@@ -3,6 +3,7 @@ function ServiceCard({ icon, title, desc }: { icon: React.ReactNode; title: stri
         <div className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
             <div className="mb-4">{icon}</div>
             <h3 className="text-lg font-semibold">{title}</h3>
+            <div className="mt-4 mb-4 h-px bg-white/10" />
             <p className="mt-2 text-white/60 text-sm leading-relaxed">{desc}</p>
         </div>
     );
@@ -10,16 +11,40 @@ function ServiceCard({ icon, title, desc }: { icon: React.ReactNode; title: stri
 
 function IconCode() {
     return (
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" className="text-white/90">
-            <path d="M9 18L3 12L9 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M15 6L21 12L15 18" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M14 4L10 20" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        <svg width="62" height="62" viewBox="0 0 24 24" fill="none" className="text-white/90">
+            {/* Left chevron: move it a bit left (end at x=8 instead of 9) */}
+            <path
+                d="M8 18L2.5 12L8 6"
+                stroke="currentColor"
+                strokeWidth="1.9"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+
+            {/* Right chevron: move it a bit right (start at x=16 instead of 15) */}
+            <path
+                d="M16 6L21.5 12L16 18"
+                stroke="currentColor"
+                strokeWidth="1.9"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+
+            {/* Slash stays centered */}
+            <path
+                d="M14 4L10 20"
+                stroke="#00B4C4"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
         </svg>
+
     );
 }
 function IconShield() {
     return (
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" className="text-white/90">
+        <svg width="62" height="62" viewBox="0 0 24 24" fill="none" className="text-white/90">
             <path d="M12 2L20 6V12C20 17 16.5 20.5 12 22C7.5 20.5 4 17 4 12V6L12 2Z" stroke="currentColor" strokeWidth="1.6" />
             <path d="M9.5 12.2L11.3 14L15.5 9.8" stroke="#00B4C4" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -27,14 +52,20 @@ function IconShield() {
 }
 function IconCloud() {
     return (
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" className="text-white/90">
+        <svg width="62" height="62" viewBox="0 0 24 24" fill="none" className="text-white/90">
             <path
-                d="M7 18H17C19.2 18 21 16.2 21 14C21 12.1 19.7 10.6 18 10.1C17.6 7.8 15.6 6 13.2 6C11.2 6 9.5 7.1 8.6 8.8C6.6 9 5 10.7 5 12.8C5 15.7 5.9 18 7 18Z"
+                d="M7 18h10a4 4 0 0 0 .2-8 6 6 0 0 0-11.5-1.6A4.6 4.6 0 0 0 7 18Z"
                 stroke="currentColor"
                 strokeWidth="1.6"
                 strokeLinejoin="round"
             />
-            <path d="M10 15.5L11.4 16.9L14.8 13.5" stroke="#00B4C4" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <path
+                d="M9.1 12.1l1.8 1.8 3.6-4.2"
+                stroke="#00B4C4"
+                strokeWidth="1.9"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
         </svg>
     );
 }

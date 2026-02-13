@@ -10,7 +10,7 @@ function FeatureCard({ icon, title, desc }: { icon: React.ReactNode; title: stri
 
 function IconBadge() {
     return (
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" className="text-white/90">
+        <svg width="62" height="62" viewBox="0 0 24 24" fill="none" className="text-white/90">
             <path d="M12 2L20 6V12C20 17 16.5 20.5 12 22C7.5 20.5 4 17 4 12V6L12 2Z" stroke="currentColor" strokeWidth="1.6" />
             <path d="M9.5 12.2L11.3 14L15.5 9.8" stroke="#00B4C4" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -18,8 +18,8 @@ function IconBadge() {
 }
 function IconGauge() {
     return (
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" className="text-white/90">
-            <path d="M20 13A8 8 0 1 1 4 13" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        <svg width="62" height="62" viewBox="0 0 24 24" fill="none" className="text-white/90">
+            <path d="M20 13A8 8 0 1 1 4 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
             <path d="M12 13L16.5 9.5" stroke="#00B4C4" strokeWidth="1.8" strokeLinecap="round" />
             <path d="M6 13H4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
             <path d="M20 13H18" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
@@ -28,25 +28,59 @@ function IconGauge() {
 }
 function IconShieldSolid() {
     return (
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" className="text-white/90">
+        <svg width="62" height="62" viewBox="0 0 24 24" fill="none" className="text-white/90">
             <path d="M12 2L20 6V12C20 17 16.5 20.5 12 22C7.5 20.5 4 17 4 12V6L12 2Z" stroke="currentColor" strokeWidth="1.6" />
-            <path d="M8.8 12.3L10.6 14.1L15.2 9.6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M8 4.8L12 2.8L16 4.8" stroke="#00B4C4" strokeWidth="1.6" strokeLinecap="round" />
+            <path d="M8.8 12.3L10.6 14.1L15.2 9.6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M8 4.8L12 2.8L16 4.8" stroke="#00B4C4" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
     );
 }
-function IconGear() {
+// IconGear (igual al diseño: doble trazo + centro con fill suave)
+export function IconGear() {
     return (
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" className="text-white/90">
+        <svg
+            width="52"
+            height="52"
+            viewBox="0 0 24 24"
+            fill="none"
+            className="text-white/90"
+            aria-hidden="true"
+        >
+            {/* OUTLINE oscuro (debajo) */}
             <path
-                d="M12 15.5A3.5 3.5 0 1 0 12 8.5A3.5 3.5 0 0 0 12 15.5Z"
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83a2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33a1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-.09a1.65 1.65 0 0 0-1-1.51a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0a2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2a2 2 0 0 1 2-2h.09a1.65 1.65 0 0 0 1.51-1a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83a2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2a2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0a2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"
+                stroke="#0B1324"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+
+            <circle cx="12" cy="12" r="3.5" fill="rgba(255,255,255,0.08)" />
+            <circle
+                cx="12"
+                cy="12"
+                r="3.5"
+                stroke="#0B1324"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+
+            {/* TRAZO blanco (arriba) */}
+            <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83a2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33a1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-.09a1.65 1.65 0 0 0-1-1.51a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0a2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2a2 2 0 0 1 2-2h.09a1.65 1.65 0 0 0 1.51-1a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83a2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2a2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0a2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"
                 stroke="currentColor"
                 strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
-            <path
-                d="M19.4 15a7.9 7.9 0 0 0 .1-2l2-1.2l-2-3.4l-2.2.6a7.6 7.6 0 0 0-1.7-1L15.3 3H8.7L8 5.6c-.6.3-1.2.6-1.7 1L4.1 6L2 9.4l2 1.2a7.9 7.9 0 0 0 0 2L2 13.8L4.1 17l2.2-.6c.5.4 1.1.8 1.7 1L8.7 21h6.6l.7-2.6c.6-.3 1.2-.6 1.7-1l2.2.6l2-3.4l-2-1.2Z"
+            <circle
+                cx="12"
+                cy="12"
+                r="3.5"
                 stroke="currentColor"
-                strokeWidth="1.2"
+                strokeWidth="2.2"
+                strokeLinecap="round"
                 strokeLinejoin="round"
             />
         </svg>

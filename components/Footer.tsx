@@ -25,18 +25,18 @@ export function Footer() {
         <FooterNetworkBg />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 relative">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-10 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 items-start">
             {/* Brand */}
             <div className="md:col-span-1 flex items-center gap-4">
               <Image
                   src="/pd_logo_white.png"
                   alt="PD"
-                  width={52}
-                  height={52}
-                  className="h-12 w-auto opacity-95"
+                  width={92}
+                  height={92}
+                  className="w-auto opacity-95"
               />
               <div>
-                <p className="font-semibold tracking-wide">COMPANY</p>
+                <p className="font-semibold tracking-wide">Presencia Digital</p>
               </div>
             </div>
 
@@ -78,33 +78,12 @@ export function Footer() {
                 </li>
               </ul>
             </div>
-
-            {/* Follow */}
-            <div>
-              <h4 className="text-white/90 font-semibold">Follow Us</h4>
-              <div className="mt-4 flex items-center gap-3">
-                {['facebook', 'twitter', 'linkedin', 'chat'].map((icon) => (
-                    <a
-                        key={icon}
-                        href="#"
-                        className="h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/70 hover:text-white hover:border-white/20 transition"
-                    >
-                  <span className="material-icons-outlined text-base">
-                    {icon === 'facebook' && 'facebook'}
-                    {icon === 'twitter' && 'travel_explore'}
-                    {icon === 'linkedin' && 'work'}
-                    {icon === 'chat' && 'chat'}
-                  </span>
-                    </a>
-                ))}
-              </div>
-            </div>
           </div>
 
           <div className="mt-10 h-px bg-white/10" />
 
           <div className="mt-10 text-center text-white/60">
-            <p>© 2024 Company. All rights reserved.</p>
+            <p>© 2026 Company. All rights reserved.</p>
 
             <div className="mt-6 flex flex-wrap justify-center gap-4 text-white/60">
               <a className="hover:text-[#00B4C4] transition" href="#services">Services</a>
