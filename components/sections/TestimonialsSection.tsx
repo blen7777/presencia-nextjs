@@ -12,34 +12,16 @@ type Testimonial = {
 
 const TESTIMONIALS: Testimonial[] = [
     {
-        name: 'John Smith',
+        name: 'Client\'s review',
         role: 'CEO, Retail Startup',
         quote:
-            'The team delivered a fast, modern platform that transformed our operations. Highly recommended.',
+            'The team are excellent PHP and Laravel developer with a sharp technical mind and a fantastic attitude. He not only brings deep expertise to the table but also makes collaboration easy and enjoyable. His insightful technical observations during scoping help streamline projects and ensure top-quality results.',
     },
     {
-        name: 'Sarah Johnson',
+        name: 'Client\'s review',
         role: 'CTO, E-Commerce Company',
         quote:
-            'Exceptional service and support. They exceeded our expectations and shipped on time.',
-    },
-    {
-        name: 'Michael Chen',
-        role: 'Product Lead, SaaS Platform',
-        quote:
-            'Great communication, clean architecture, and an on-time delivery. The process was smooth end-to-end.',
-    },
-    {
-        name: 'Ana Martínez',
-        role: 'Operations Manager, Logistics',
-        quote:
-            'They built a reliable system with great performance. Our workflows improved immediately after launch.',
-    },
-    {
-        name: 'David Williams',
-        role: 'Founder, Fintech',
-        quote:
-            'Strong engineering team. Secure, scalable, and thoughtful UX details across the whole product.',
+            'It was great working with José. He is very experienced in a lot of development sectors, but most importantly he is very cooperative and proactive. He delivered on time and asked the correct questions about requirements all the tim',
     },
 ];
 

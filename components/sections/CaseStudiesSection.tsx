@@ -6,7 +6,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 type CaseItem = {
     title: string;
     desc: string;
-    image: string; // poné tus imágenes reales en /public
+    tech?: string;
+    image: string;
     href?: string;
 };
 
@@ -49,13 +50,7 @@ function CaseCard({
             <div className="p-6">
                 <h3 className="text-xl font-semibold">{item.title}</h3>
                 <p className="mt-2 text-white/60 text-sm leading-relaxed">{item.desc}</p>
-
-                <a
-                    href={item.href ?? '#contact'}
-                    className="mt-4 inline-flex text-sm text-[#00B4C4] hover:opacity-90 transition"
-                >
-                    Read More &nbsp;›
-                </a>
+                <p className="mt-2 text-[#00B4C4] text-sm leading-relaxed">{item.tech}</p>
             </div>
         </div>
     );
@@ -65,28 +60,41 @@ export function CaseStudiesSection() {
     const items: CaseItem[] = useMemo(
         () => [
             {
-                title: 'Project One',
-                desc: 'A custom CRM solution for financial services firm, improving client management.',
+                title: 'E-Commerce Platform with Electronic Invoicing',
+                desc: 'Built a full e-commerce platform for a retail business, including product catalog, shopping cart, checkout flow, and\n' +
+                    'integration with El Salvador\'s electronic invoicing system (DTE). The system handles real-time tax calculations, invoice\n' +
+                    'generation, and submission to the Ministry of Finance.',
+                tech: 'Technologies: Laravel, React, MySQL, DTE Integration, REST APIs',
                 image: '/cases/case-1.jpg',
             },
             {
-                title: 'Project Two',
-                desc: 'Enterprise integration for a retail company, connecting inventory, sales and customer data.',
+                title: 'Beauty Salon Management with Electronic Invoicing',
+                desc: 'Developed a management system for a beauty salon chain, covering appointment scheduling, client management,\n' +
+                    'inventory tracking, and point-of-sale with electronic invoicing. The platform streamlined daily operations and ensured full\n' +
+                    'fiscal compliance.\n',
+                tech: 'Technologies: Laravel, Filament, MySQL, DTE Integration',
                 image: '/cases/case-2.jpg',
             },
             {
-                title: 'Project Three',
-                desc: 'Cloud infrastructure and DevOps for a tech startup, ensuring scalability and reliability.',
+                title: 'Human Resources & Payroll System',
+                desc: 'Designed and built an HR and payroll management system covering employee records, attendance tracking, leave\n' +
+                    'management, salary calculations, deductions, and payslip generation. The system handles El Salvador\'s labor law\n' +
+                    'requirements including AFP, ISSS, and income tax withholdings.\n',
+                tech: 'Technologies: Laravel, React, PostgreSQL, REST APIs',
                 image: '/cases/case-3.jpg',
             },
             {
-                title: 'Project Four',
-                desc: 'Automation and reporting dashboard to improve operational visibility and decision-making.',
+                title: 'CRM for Insurance Brokerage Agency',
+                desc: 'Created a custom CRM system for an insurance brokerage firm, managing client portfolios, policy tracking, renewal\n' +
+                    'alerts, commission calculations, and sales pipeline. The platform improved client retention and gave the sales team full\n' +
+                    'visibility into their pipeline.\n',
+                tech: 'Technologies: Laravel, Filament, MySQL, REST APIs',
                 image: '/cases/case-4.jpg',
             },
             {
-                title: 'Project Five',
-                desc: 'Secure authentication + role-based access + performance optimization for enterprise workflows.',
+                title: 'API Development for Lighting App',
+                desc: 'I built a REST API for a lighting control app using Node.js and Express, delivering endpoints to manage devices (on/off, brightness, color/scenes), organize them by rooms/zones, handle user authentication and permissions, persist settings and device state in a database, support basic automations (schedules/rules).',
+                tech: 'Technologies: NodeJS Express, MySQL, REST APIs',
                 image: '/cases/case-5.jpg',
             },
         ],
