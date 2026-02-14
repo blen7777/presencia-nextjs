@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Presencia Digital',
   description: 'Software Engineering & Technology Consulting.',
   icons: {
-    icon: '/equitty_isotipo.png',
+    icon: '/isotipo.png',
   },
 };
 
