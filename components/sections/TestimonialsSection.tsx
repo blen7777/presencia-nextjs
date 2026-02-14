@@ -15,13 +15,13 @@ const TESTIMONIALS: Testimonial[] = [
         name: 'Client\'s review',
         role: 'CEO, Retail Startup',
         quote:
-            'The team are excellent PHP and Laravel developer with a sharp technical mind and a fantastic attitude. He not only brings deep expertise to the table but also makes collaboration easy and enjoyable. His insightful technical observations during scoping help streamline projects and ensure top-quality results.',
+            'The team are excellent PHP and Laravel developers with sharp technical minds and fantastic attitudes. They bring deep expertise to the table and make collaboration easy and enjoyable. Their insightful technical observations during scoping help streamline projects and ensure top-quality results.',
     },
     {
         name: 'Client\'s review',
         role: 'CTO, E-Commerce Company',
         quote:
-            'It was great working with José. He is very experienced in a lot of development sectors, but most importantly he is very cooperative and proactive. He delivered on time and asked the correct questions about requirements all the tim',
+            'It was great working with José. He’s highly experienced across many areas of software development, and most importantly, he’s cooperative and proactive. He delivered on time and consistently asked the right questions to clarify requirements throughout the project.',
     },
 ];
 
