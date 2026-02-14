@@ -43,11 +43,11 @@ export function Navbar() {
                   alt="PD"
                   width={54}
                   height={54}
-                  className="h-9 w-auto opacity-95"
+                  className="h-12 w-auto opacity-95"
                   priority
               />
               <span className="hidden sm:block font-semibold tracking-wide text-white/90">
-              PD Solutions
+              PRESENCIA DIGITA
             </span>
             </a>
 
