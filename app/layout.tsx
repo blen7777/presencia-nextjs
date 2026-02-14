@@ -5,8 +5,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: 'EQUITTY | Real-World Asset Investment',
-  description: 'The investment platform for real-world projects right from the palm of your hand.',
+  title: 'Presencia Digital',
+  description: 'Software Engineering & Technology Consulting.',
   icons: {
     icon: '/equitty_isotipo.png',
   },

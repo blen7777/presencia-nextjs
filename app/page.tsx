@@ -3,6 +3,7 @@ import { Hero } from '@/components/Hero';
 import { ServicesSection } from '@/components/sections/ServicesSection';
 import { WhyChooseUsSection } from '@/components/sections/WhyChooseUsSection';
 import { AboutSection } from '@/components/sections/AboutSection';
+import { StatsSection } from '@/components/sections/StatsSection';
 import { CaseStudiesSection } from '@/components/sections/CaseStudiesSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { Footer } from '@/components/Footer';
@@ -25,6 +26,7 @@ export default function Home() {
 
           <main className="pt-24 relative">
             <Hero />
+            <StatsSection />
             <ServicesSection />
             <WhyChooseUsSection />
 

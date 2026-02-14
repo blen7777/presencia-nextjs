@@ -83,17 +83,20 @@ export function ServicesSection() {
                     <ServiceCard
                         icon={<IconCode />}
                         title="Custom Development"
-                        desc="Bespoke solutions to fit your business needs."
+                        desc=" Microservices architecture design and implementation,  REST APIs and event-driven systems,  Full-stack delivery: backend + frontend +
+database, Integration with third-party services and APIs"
                     />
                     <ServiceCard
                         icon={<IconShield />}
                         title="Enterprise Integration"
-                        desc="Seamless integration with your existing systems."
+                        desc=" Migration from on-premise to cloud (GCP, AWS, Azure),  Monolith to microservices refactoring,  Performance optimization and database tuning,Business workflow optimization and automation"
                     />
                     <ServiceCard
                         icon={<IconCloud />}
                         title="Cloud & DevOps"
-                        desc="Scalable and reliable cloud infrastructure."
+                        desc="Scalable and reliable cloud infrastructure, Cloud-agnostic architecture design,  Data pipelines for reporting and analytics, CI/CD and DevOps setup from day one,  Scalable foundations that grow with your
+business
+"
                     />
                 </div>
             </div>

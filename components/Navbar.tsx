@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { useLanguage } from '@/components/LanguageProvider';
 
 const links = [
   { label: 'Services', href: '#services' },
@@ -13,6 +14,10 @@ const links = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  // ✅ idioma (como lo tenías antes)
+  const { language, setLanguage } = useLanguage();
+  const toggleLanguage = () => setLanguage(language === 'en' ? 'es' : 'en');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -58,6 +63,7 @@ export function Navbar() {
                       ].join(' ')}
                   >
                     {l.label}
+
                     {/* underline “active” like screenshot */}
                     {idx === 0 && (
                         <span className="absolute -bottom-3 left-0 w-full h-[2px] bg-[#00B4C4] rounded-full opacity-80" />
@@ -66,8 +72,51 @@ export function Navbar() {
               ))}
             </nav>
 
-            {/* CTA + Mobile */}
+            {/* Right side */}
             <div className="flex items-center gap-3">
+              {/* ✅ Language Toggle (desktop) */}
+              <div className="hidden md:flex items-center">
+                <div className="relative flex items-center bg-white/5 border border-white/10 rounded-full px-3 py-1">
+                <span
+                    className={`text-xs font-bold mr-3 transition-colors select-none ${
+                        language === 'es' ? 'text-white' : 'text-white/40'
+                    }`}
+                >
+                  ES
+                </span>
+
+                  <label
+                      htmlFor="lang-toggle"
+                      className="relative inline-flex items-center cursor-pointer"
+                  >
+                    <input
+                        type="checkbox"
+                        id="lang-toggle"
+                        checked={language === 'en'}
+                        onChange={toggleLanguage}
+                        className="sr-only peer"
+                    />
+                    <div className="w-8 h-4 bg-white/10 rounded-full border border-white/10" />
+                    <div
+                        className={`absolute left-[2px] top-[2px] h-3 w-3 rounded-full transition-all duration-300 ease-in-out ${
+                            language === 'en'
+                                ? 'translate-x-full bg-[#00B4C4]'
+                                : 'translate-x-0 bg-white/50'
+                        }`}
+                    />
+                  </label>
+
+                  <span
+                      className={`text-xs font-bold ml-3 transition-colors select-none ${
+                          language === 'en' ? 'text-white' : 'text-white/40'
+                      }`}
+                  >
+                  EN
+                </span>
+                </div>
+              </div>
+
+              {/* CTA */}
               <a
                   href="#contact"
                   className="hidden md:inline-flex items-center justify-center px-5 py-2 rounded-lg border border-[#00B4C4]/60 text-white/90 hover:border-[#00B4C4] hover:text-white transition"
@@ -75,6 +124,7 @@ export function Navbar() {
                 Get a Quote
               </a>
 
+              {/* Mobile Menu Button */}
               <button
                   className="md:hidden inline-flex items-center justify-center p-2 rounded-lg border border-white/10 hover:border-white/20 transition"
                   onClick={() => setOpen((v) => !v)}
@@ -99,6 +149,7 @@ export function Navbar() {
                         {l.label}
                       </a>
                   ))}
+
                   <a
                       href="#contact"
                       onClick={() => setOpen(false)}
@@ -106,6 +157,17 @@ export function Navbar() {
                   >
                     Get a Quote
                   </a>
+
+                  {/* ✅ Language Toggle (mobile) */}
+                  <button
+                      onClick={() => {
+                        toggleLanguage();
+                        setOpen(false);
+                      }}
+                      className="mt-3 px-3 py-3 rounded-lg border border-white/10 text-left text-[#00B4C4] font-bold hover:bg-white/5 transition"
+                  >
+                    {language === 'en' ? 'Switch to Español' : 'Switch to English'}
+                  </button>
                 </div>
               </div>
           )}

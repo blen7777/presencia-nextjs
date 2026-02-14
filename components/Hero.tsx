@@ -27,13 +27,17 @@ export function Hero() {
                         {/* Left */}
                         <div className="relative z-10">
                             <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-tight">
-                                Building Innovative Software
+                                Engineering Reliable
                                 <br />
-                                Solutions for Your Business
+                                That Software
+                                <br />
+                                Helps You Scale
                             </h1>
 
                             <p className="mt-5 text-white/70 text-lg max-w-xl leading-relaxed">
-                                We deliver scalable, secure, and high-performance applications tailored to your needs.
+                                We are a specialized remote agency based in El Salvador, focused on delivering high-quality
+                                custom software, cloud migration, and AI-driven automation for small and mid-sized businesses
+                                across the Americas.
                             </p>
 
                             <div className="mt-8 flex flex-wrap gap-4">
@@ -43,12 +47,7 @@ export function Hero() {
                                 >
                                     Get a Free Consultation
                                 </a>
-                                <a
-                                    href="#services"
-                                    className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-white/15 text-white/90 hover:border-white/25 hover:text-white transition"
-                                >
-                                    Learn More
-                                </a>
+
                             </div>
                         </div>
 

@@ -30,7 +30,7 @@ function IconShieldSolid() {
     return (
         <svg width="62" height="62" viewBox="0 0 24 24" fill="none" className="text-white/90">
             <path d="M12 2L20 6V12C20 17 16.5 20.5 12 22C7.5 20.5 4 17 4 12V6L12 2Z" stroke="currentColor" strokeWidth="1.6" />
-            <path d="M8.8 12.3L10.6 14.1L15.2 9.6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M8.8 12.3L10.6 14.1L15.2 9.6" stroke="#00B4C4" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M8 4.8L12 2.8L16 4.8" stroke="#00B4C4" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
     );
@@ -78,7 +78,7 @@ export function IconGear() {
                 cx="12"
                 cy="12"
                 r="3.5"
-                stroke="currentColor"
+                stroke="#00B4C4"
                 strokeWidth="2.2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -91,7 +91,7 @@ export function WhyChooseUsSection() {
     return (
         <section className="py-14">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl md:text-4xl font-bold text-center">Why Choose Us</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-center">Why Work With Us</h2>
                 <p className="text-center text-white/60 mt-3 max-w-2xl mx-auto">
                     Discover how we’ve helped businesses achieve their goals with our innovative solutions.
                 </p>
@@ -100,22 +100,22 @@ export function WhyChooseUsSection() {
                     <FeatureCard
                         icon={<IconBadge />}
                         title="Experienced Team"
-                        desc="Skilled developers with years of industry expertise."
+                        desc="Every member of our team is a senior engineer with 10+ years of hands-on experience. No juniors learning on your project."
                     />
                     <FeatureCard
                         icon={<IconGauge />}
                         title="High Performance"
-                        desc="Optimized solutions for maximum speed and efficiency."
+                        desc=" US-quality engineering at Latin American rates. You get dedicated senior talent at a fraction of the cost of domestic hires."
                     />
                     <FeatureCard
                         icon={<IconShieldSolid />}
-                        title="End-to-End Security"
-                        desc="Robust security measures to protect your data."
+                        title="Battle-Tested"
+                        desc="Our engineers have built systems for Walmart's financial platform (processing millions of transactions), government-scale cloud migrations, and enterprise ERP ecosystems."
                     />
                     <FeatureCard
                         icon={<IconGear />}
-                        title="Ongoing Support"
-                        desc="Dedicated support and maintenance post-launch."
+                        title="Transparent Communication"
+                        desc="We work on your timezone (Americas), attend daily standups, and use the tools your team already knows — Slack, Teams, Google Meet, Jira"
                     />
                 </div>
             </div>
