@@ -4,8 +4,7 @@ import { z } from 'zod';
 import { db } from '@/db';
 import { contactMessages } from '@/db/schema';
 import { checkRateLimit } from '@/lib/rateLimit';
-// Opcional si quieres emails:
-// import { sendContactNotificationEmail, sendContactAutoReplyEmail } from '@/lib/email';
+import { sendContactNotificationEmail, sendContactAutoReplyEmail } from '@/lib/email';
 
 const contactSchema = z.object({
     name: z.string().min(2, 'Name is required').max(150),
@@ -23,34 +22,27 @@ export interface ContactResponse {
     message: string;
 }
 
-export async function submitContact(
-    formData: ContactFormData
-): Promise<ContactResponse> {
+export async function submitContact(formData: ContactFormData): Promise<ContactResponse> {
     try {
         const validated = contactSchema.parse(formData);
 
-        // Honeypot anti-bot
         if (validated.honeypot && validated.honeypot.length > 0) {
             return { success: false, message: 'Invalid submission detected' };
         }
 
-        // Rate limit (ej: 3 envíos por email cada 10 minutos)
         const rateLimitCheck = checkRateLimit(validated.email, {
             maxAttempts: 3,
             windowMs: 10 * 60 * 1000,
         });
 
         if (!rateLimitCheck.allowed) {
-            const minutesRemaining = Math.ceil(
-                (rateLimitCheck.resetAt - Date.now()) / 1000 / 60
-            );
+            const minutesRemaining = Math.ceil((rateLimitCheck.resetAt - Date.now()) / 1000 / 60);
             return {
                 success: false,
                 message: `Too many attempts. Please try again in ${minutesRemaining} minutes.`,
             };
         }
 
-        // Guardar mensaje
         await db.insert(contactMessages).values({
             name: validated.name.trim(),
             email: validated.email.toLowerCase().trim(),
@@ -58,9 +50,31 @@ export async function submitContact(
             message: validated.message.trim(),
         });
 
-        // Opcional: enviar email al admin + auto-reply
-        // sendContactNotificationEmail({ ...validated }).catch(console.error);
-        // sendContactAutoReplyEmail({ email: validated.email, language: validated.language }).catch(console.error);
+        // ✅ 1) ADMIN email: esperar para detectar fallos reales
+        const adminOk = await sendContactNotificationEmail({
+            name: validated.name,
+            email: validated.email,
+            phone: validated.phone?.trim() ? validated.phone : null,
+            message: validated.message,
+            language: validated.language,
+        });
+
+        // ✅ 2) Auto-reply: background (no bloquea)
+        sendContactAutoReplyEmail({
+            name: validated.name,
+            email: validated.email,
+            phone: validated.phone?.trim() ? validated.phone : null,
+            message: validated.message,
+            language: validated.language,
+        }).catch(console.error);
+
+        if (!adminOk) {
+            return {
+                success: true,
+                message:
+                    'Message saved, but email delivery is not configured yet (Resend "from" domain).',
+            };
+        }
 
         return { success: true, message: 'Message sent successfully!' };
     } catch (error) {

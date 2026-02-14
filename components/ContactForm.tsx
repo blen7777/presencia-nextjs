@@ -1,22 +1,43 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { submitContact } from '@/actions/contact';
 
 export function ContactForm() {
+    const formRef = useRef<HTMLFormElement | null>(null);
+
     const [loading, setLoading] = useState(false);
     const [done, setDone] = useState(false);
+    const [msg, setMsg] = useState<string>('');
 
     async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
+
         setLoading(true);
         setDone(false);
+        setMsg('');
 
-        // ✅ Aquí luego conectamos tu server action (guardar en MySQL + enviar email)
-        await new Promise((r) => setTimeout(r, 700));
+        const fd = new FormData(e.currentTarget);
+
+        const language =
+            (typeof document !== 'undefined' && document.documentElement.lang === 'es') ? 'es' : 'en';
+
+        const res = await submitContact({
+            name: String(fd.get('name') || ''),
+            email: String(fd.get('email') || ''),
+            phone: String(fd.get('phone') || ''),
+            message: String(fd.get('message') || ''),
+            honeypot: String(fd.get('honeypot') || ''),
+            language,
+        });
 
         setLoading(false);
-        setDone(true);
-        (e.currentTarget as HTMLFormElement).reset();
+        setDone(res.success);
+        setMsg(res.message);
+
+        if (res.success) {
+            formRef.current?.reset();
+        }
     }
 
     return (
@@ -27,13 +48,23 @@ export function ContactForm() {
             <h3 className="text-2xl font-semibold">Get in Touch</h3>
             <div className="mt-4 h-px bg-white/10" />
 
-            <form onSubmit={onSubmit} className="mt-5 space-y-4">
+            <form ref={formRef} onSubmit={onSubmit} className="mt-5 space-y-4">
+                {/* Honeypot (hidden) */}
+                <input
+                    type="text"
+                    name="honeypot"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    className="hidden"
+                />
+
                 <input
                     className="w-full h-12 rounded-lg bg-[#0B1324]/60 border border-white/10 px-4 text-white placeholder:text-white/40 outline-none focus:border-white/20"
                     placeholder="Your Name"
                     name="name"
                     required
                 />
+
                 <input
                     className="w-full h-12 rounded-lg bg-[#0B1324]/60 border border-white/10 px-4 text-white placeholder:text-white/40 outline-none focus:border-white/20"
                     placeholder="Email Address"
@@ -41,11 +72,13 @@ export function ContactForm() {
                     type="email"
                     required
                 />
+
                 <input
                     className="w-full h-12 rounded-lg bg-[#0B1324]/60 border border-white/10 px-4 text-white placeholder:text-white/40 outline-none focus:border-white/20"
                     placeholder="Phone Number"
                     name="phone"
                 />
+
                 <textarea
                     className="w-full min-h-[120px] rounded-lg bg-[#0B1324]/60 border border-white/10 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:border-white/20 resize-none"
                     placeholder="Your Message"
@@ -60,9 +93,9 @@ export function ContactForm() {
                     {loading ? 'Sending...' : 'Send Message'}
                 </button>
 
-                {done && (
-                    <p className="text-sm text-[#00B4C4] text-center pt-1">
-                        Message sent! We’ll get back to you shortly.
+                {!!msg && (
+                    <p className={`text-sm text-center pt-1 ${done ? 'text-[#00B4C4]' : 'text-red-300'}`}>
+                        {msg}
                     </p>
                 )}
             </form>

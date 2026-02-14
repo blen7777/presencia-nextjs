@@ -1,138 +1,131 @@
+// lib/email.ts
 import { Resend } from 'resend';
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-export interface WelcomeEmailData {
-  email: string;
-  position: number;
-  referralCode: string;
-  language: 'en' | 'es';
+function escapeHtml(value: string) {
+  return value
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
 }
 
-export async function sendWelcomeEmail(data: WelcomeEmailData): Promise<boolean> {
-  const { email, position, referralCode, language } = data;
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-  const referralLink = `${appUrl}?ref=${referralCode}`;
+type ContactEmailPayload = {
+  name: string;
+  email: string;
+  phone?: string | null;
+  message: string;
+  language?: 'en' | 'es';
+};
 
-  const subject = language === 'es' 
-    ? '🎉 ¡Bienvenido a la Lista de Espera de EQUITTY!' 
-    : '🎉 Welcome to EQUITTY Waitlist!';
+function getFrom() {
+  // IMPORTANTE: este "from" debe ser un dominio verificado en Resend
+  return process.env.CONTACT_FROM_EMAIL || 'Presencia Digital <no-reply@presenciadigital.com>';
+}
 
-  const htmlContent = language === 'es'
-    ? `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="UTF-8">
-        <style>
-          body { font-family: 'Inter', Arial, sans-serif; background-color: #050A14; color: #ffffff; padding: 20px; }
-          .container { max-width: 600px; margin: 0 auto; background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 40px; }
-          .header { text-align: center; margin-bottom: 30px; }
-          .logo { font-size: 32px; font-weight: bold; color: #00B4C4; }
-          .position { font-size: 48px; font-weight: bold; background: linear-gradient(135deg, #00B4C4 0%, #006AD5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin: 20px 0; }
-          .referral-box { background: rgba(0, 180, 196, 0.1); border: 1px solid #00B4C4; border-radius: 12px; padding: 20px; margin: 20px 0; text-align: center; }
-          .referral-code { font-size: 24px; font-weight: bold; color: #00B4C4; letter-spacing: 2px; }
-          .btn { display: inline-block; background: #00B4C4; color: #050A14; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: bold; margin: 20px 0; }
-          .footer { text-align: center; color: #6B7280; font-size: 12px; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <div class="header">
-            <div class="logo">EQUITTY</div>
-            <h1>¡Estás en la lista!</h1>
-          </div>
-          <p>Hola,</p>
-          <p>Bienvenido a la lista de espera de EQUITTY. Tu lugar está reservado.</p>
-          <div class="position">#${position}</div>
-          <p style="text-align: center; color: #9CA3AF;">Tu posición actual en la fila</p>
-          
-          <div class="referral-box">
-            <p style="margin: 0 0 10px 0; font-size: 14px;">🚀 Sube de posición refiriendo amigos</p>
-            <p style="margin: 5px 0; font-size: 12px; color: #9CA3AF;">Tu código de referido:</p>
-            <div class="referral-code">${referralCode}</div>
-            <a href="${referralLink}" class="btn">Compartir mi enlace</a>
-            <p style="margin: 10px 0 0 0; font-size: 11px; color: #6B7280;">${referralLink}</p>
-          </div>
+function getTo() {
+  // a dónde te llegan los leads (tu correo)
+  return process.env.CONTACT_TO_EMAIL || 'info@presenciadigital.com';
+}
 
-          <p>Serás notificado 48 horas antes del lanzamiento público para tener acceso prioritario a los primeros activos.</p>
-          
-          <div class="footer">
-            <p>© 2026 EQUITTY - Powered by Soluciones OMEGA</p>
-            <p>Inversión transparente, segura y sin fronteras</p>
-          </div>
+export async function sendContactNotificationEmail(payload: ContactEmailPayload): Promise<boolean> {
+  if (!resend) return false;
+
+  const from = getFrom();
+  const to = getTo();
+
+  const safe = {
+    name: escapeHtml(payload.name),
+    email: escapeHtml(payload.email),
+    phone: escapeHtml(payload.phone ?? ''),
+    message: escapeHtml(payload.message),
+  };
+
+  const subject = `New Lead — ${payload.name}`;
+
+  const html = `
+  <!doctype html>
+  <html>
+    <body style="font-family:Inter,Arial,sans-serif;background:#050A14;color:#fff;padding:24px;">
+      <div style="max-width:680px;margin:0 auto;border:1px solid rgba(255,255,255,.10);border-radius:16px;background:rgba(255,255,255,.05);padding:22px;">
+        <h2 style="margin:0 0 10px 0;">New contact message</h2>
+        <div style="height:1px;background:rgba(255,255,255,.10);margin:14px 0;"></div>
+
+        <p style="margin:0 0 8px 0;"><strong>Name:</strong> ${safe.name}</p>
+        <p style="margin:0 0 8px 0;"><strong>Email:</strong> ${safe.email}</p>
+        ${safe.phone ? `<p style="margin:0 0 8px 0;"><strong>Phone:</strong> ${safe.phone}</p>` : ''}
+
+        <p style="margin:14px 0 8px 0;"><strong>Message:</strong></p>
+        <div style="white-space:pre-wrap;line-height:1.55;border:1px solid rgba(255,255,255,.10);border-radius:12px;padding:14px;background:rgba(11,19,36,.55);color:rgba(255,255,255,.85);">
+${safe.message}
         </div>
-      </body>
-      </html>
-    `
-    : `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="UTF-8">
-        <style>
-          body { font-family: 'Inter', Arial, sans-serif; background-color: #050A14; color: #ffffff; padding: 20px; }
-          .container { max-width: 600px; margin: 0 auto; background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 40px; }
-          .header { text-align: center; margin-bottom: 30px; }
-          .logo { font-size: 32px; font-weight: bold; color: #00B4C4; }
-          .position { font-size: 48px; font-weight: bold; background: linear-gradient(135deg, #00B4C4 0%, #006AD5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin: 20px 0; }
-          .referral-box { background: rgba(0, 180, 196, 0.1); border: 1px solid #00B4C4; border-radius: 12px; padding: 20px; margin: 20px 0; text-align: center; }
-          .referral-code { font-size: 24px; font-weight: bold; color: #00B4C4; letter-spacing: 2px; }
-          .btn { display: inline-block; background: #00B4C4; color: #050A14; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: bold; margin: 20px 0; }
-          .footer { text-align: center; color: #6B7280; font-size: 12px; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <div class="header">
-            <div class="logo">EQUITTY</div>
-            <h1>You're on the list!</h1>
-          </div>
-          <p>Hello,</p>
-          <p>Welcome to the EQUITTY waitlist. Your spot is reserved.</p>
-          <div class="position">#${position}</div>
-          <p style="text-align: center; color: #9CA3AF;">Your current position in line</p>
-          
-          <div class="referral-box">
-            <p style="margin: 0 0 10px 0; font-size: 14px;">🚀 Move up by referring friends</p>
-            <p style="margin: 5px 0; font-size: 12px; color: #9CA3AF;">Your referral code:</p>
-            <div class="referral-code">${referralCode}</div>
-            <a href="${referralLink}" class="btn">Share my link</a>
-            <p style="margin: 10px 0 0 0; font-size: 11px; color: #6B7280;">${referralLink}</p>
-          </div>
 
-          <p>You will be notified 48 hours before the public launch to have priority access to the first assets.</p>
-          
-          <div class="footer">
-            <p>© 2026 EQUITTY - Powered by Soluciones OMEGA</p>
-            <p>Transparent, secure, and borderless investment</p>
-          </div>
-        </div>
-      </body>
-      </html>
-    `;
+        <p style="margin:16px 0 0 0;color:rgba(255,255,255,.55);font-size:12px;">
+          Sent from Presencia Digital website contact form.
+        </p>
+      </div>
+    </body>
+  </html>
+  `;
 
-  // If Resend is configured, send real email
-  if (resend) {
-    try {
-      await resend.emails.send({
-        from: 'EQUITTY <onboarding@equitty.com>',
-        to: email,
-        subject,
-        html: htmlContent,
-      });
-      console.log(`✅ Welcome email sent to ${email}`);
-      return true;
-    } catch (error) {
-      console.error('❌ Failed to send email:', error);
-      return false;
-    }
+  try {
+    await resend.emails.send({
+      from,
+      to,
+      subject,
+      html,
+      reply_to: payload.email, // para responder directo al cliente
+    });
+
+    return true;
+  } catch (error) {
+    console.error('Resend admin email error:', error);
+    return false;
   }
+}
 
-  // Mock email for development
-  console.log('📧 [MOCK EMAIL] Would send to:', email);
-  console.log('Subject:', subject);
-  console.log('Referral Link:', referralLink);
-  console.log('Position:', position);
-  return true;
+export async function sendContactAutoReplyEmail(payload: ContactEmailPayload): Promise<boolean> {
+  if (!resend) return false;
+
+  const from = getFrom();
+  const lang: 'en' | 'es' = payload.language === 'es' ? 'es' : 'en';
+
+  const title = lang === 'es' ? '¡Gracias por contactarnos!' : 'Thanks for reaching out!';
+  const subject = lang === 'es'
+      ? 'Hemos recibido tu mensaje — Presencia Digital'
+      : 'We received your message — Presencia Digital';
+
+  const safeName = escapeHtml(payload.name);
+
+  const html = `
+  <div style="font-family:Inter,Arial,sans-serif;background:#f6f7fb;padding:24px;">
+    <div style="max-width:680px;margin:0 auto;background:#fff;border:1px solid #e7e9f2;border-radius:16px;padding:22px;">
+      <h2 style="margin:0 0 10px 0;">${title}</h2>
+      <p style="margin:0;color:#444;">
+        ${lang === 'es'
+      ? `Hola ${safeName}, recibimos tu mensaje y te responderemos lo antes posible.`
+      : `Hi ${safeName}, we received your message and we’ll get back to you shortly.`}
+      </p>
+      <p style="margin:14px 0 0 0;color:#777;font-size:12px;">
+        — Presencia Digital
+      </p>
+    </div>
+  </div>
+  `;
+
+  try {
+    await resend.emails.send({
+      from,
+      to: payload.email,
+      subject,
+      html,
+    });
+
+    return true;
+  } catch (error) {
+    console.error('Resend auto-reply error:', error);
+    return false;
+  }
 }
