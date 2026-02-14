@@ -66,15 +66,16 @@ export function Footer() {
               <ul className="mt-4 space-y-3 text-white/65 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="material-icons-outlined text-[#00B4C4] text-base mt-[2px]">location_on</span>
-                  <span>123 Software St,<br />Tech City, 54321</span>
+                  <span>33 Ave,<br />San Salvador</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="material-icons-outlined text-[#00B4C4] text-base">call</span>
-                  <span>(123) 456-7890</span>
+                  <span>+503 7647-1451</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="material-icons-outlined text-[#00B4C4] text-base">mail</span>
-                  <span>contact@example.com</span>
+                  <span>info@presenciadigital.io
+</span>
                 </li>
               </ul>
             </div>
