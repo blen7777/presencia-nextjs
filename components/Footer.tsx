@@ -1,6 +1,8 @@
 'use client';
 
 import Image from 'next/image';
+import { useLanguage } from './LanguageProvider';
+import { translations } from '@/lib/translations';
 
 function FooterNetworkBg() {
   return (
@@ -20,6 +22,9 @@ function FooterNetworkBg() {
 }
 
 export function Footer() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
       <footer className="relative mt-10 border-t border-white/10 bg-[#050A14]">
         <FooterNetworkBg />
@@ -42,40 +47,43 @@ export function Footer() {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-white/90 font-semibold">Quick Links</h4>
+              <h4 className="text-white/90 font-semibold">{t.footer_quick_links}</h4>
               <ul className="mt-4 space-y-3 text-white/65 text-sm">
-                <li><a className="hover:text-[#00B4C4] transition" href="#services">Services</a></li>
-                <li><a className="hover:text-[#00B4C4] transition" href="#case-studies">Case Studies</a></li>
-                <li><a className="hover:text-[#00B4C4] transition" href="#about">About</a></li>
-                <li><a className="hover:text-[#00B4C4] transition" href="#contact">Contact</a></li>
+                <li><a className="hover:text-[#00B4C4] transition" href="#services">{t.nav_services}</a></li>
+                <li><a className="hover:text-[#00B4C4] transition" href="#case-studies">{t.nav_case_studies}</a></li>
+                <li><a className="hover:text-[#00B4C4] transition" href="#about">{t.nav_about}</a></li>
+                <li><a className="hover:text-[#00B4C4] transition" href="#contact">{t.nav_contact}</a></li>
               </ul>
             </div>
 
             {/* Legal */}
             <div>
-              <h4 className="text-white/90 font-semibold">Legal</h4>
+              <h4 className="text-white/90 font-semibold">{t.footer_legal}</h4>
               <ul className="mt-4 space-y-3 text-white/65 text-sm">
-                <li><a className="hover:text-[#00B4C4] transition" href="#">Privacy Policy</a></li>
-                <li><a className="hover:text-[#00B4C4] transition" href="#">Terms of Service</a></li>
+                <li><a className="hover:text-[#00B4C4] transition" href="#">{t.footer_privacy}</a></li>
+                <li><a className="hover:text-[#00B4C4] transition" href="#">{t.footer_terms}</a></li>
               </ul>
             </div>
 
             {/* Contact */}
             <div>
-              <h4 className="text-white/90 font-semibold">Contact Us</h4>
+              <h4 className="text-white/90 font-semibold">{t.footer_contact_us}</h4>
               <ul className="mt-4 space-y-3 text-white/65 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="material-icons-outlined text-[#00B4C4] text-base mt-[2px]">location_on</span>
-                  <span>33 Ave,<br />San Salvador</span>
+                  <span>{t.footer_address}</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="material-icons-outlined text-[#00B4C4] text-base">call</span>
-                  <span>+503 7647-1451</span>
+                  <span>+503 7740-4092, +503 7647-1451</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="material-icons-outlined text-[#00B4C4] text-base">mail</span>
-                  <span>info@presenciadigital.io
-</span>
+                  <span>info@presenciadigital.io</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="material-icons-outlined text-[#00B4C4] text-base">public</span>
+                  <span className="text-white/50 italic text-xs">{t.footer_remote_note}</span>
                 </li>
               </ul>
             </div>
@@ -84,16 +92,16 @@ export function Footer() {
           <div className="mt-10 h-px bg-white/10" />
 
           <div className="mt-10 text-center text-white/60">
-            <p>© 2026 Company. All rights reserved.</p>
+            <p>{t.footer_rights}</p>
 
             <div className="mt-6 flex flex-wrap justify-center gap-4 text-white/60">
-              <a className="hover:text-[#00B4C4] transition" href="#services">Services</a>
+              <a className="hover:text-[#00B4C4] transition" href="#services">{t.nav_services}</a>
               <span className="opacity-40">|</span>
-              <a className="hover:text-[#00B4C4] transition" href="#case-studies">Case Studies</a>
+              <a className="hover:text-[#00B4C4] transition" href="#case-studies">{t.nav_case_studies}</a>
               <span className="opacity-40">|</span>
-              <a className="hover:text-[#00B4C4] transition" href="#about">About</a>
+              <a className="hover:text-[#00B4C4] transition" href="#about">{t.nav_about}</a>
               <span className="opacity-40">|</span>
-              <a className="hover:text-[#00B4C4] transition" href="#contact">Contact</a>
+              <a className="hover:text-[#00B4C4] transition" href="#contact">{t.nav_contact}</a>
             </div>
 
             <div className="mt-8 flex items-center justify-center gap-4">

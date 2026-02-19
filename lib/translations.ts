@@ -1,5 +1,100 @@
 export const translations = {
   en: {
+    // Navbar
+    nav_services: 'Services',
+    nav_case_studies: 'Case Studies',
+    nav_about: 'About',
+    nav_contact: 'Contact',
+    nav_get_quote: 'Get a Quote',
+    nav_switch_lang: 'Switch to Español',
+
+    // Hero
+    hero_line1: 'Custom Software',
+    hero_line2: 'That Drives',
+    hero_line3: 'Real Growth',
+    hero_desc: 'We are a specialized remote agency based in El Salvador, focused on delivering high-quality custom software, cloud migration, and AI-driven automation for small and mid-sized businesses across the Americas.',
+    hero_cta: 'Get a Free Consultation',
+
+    // Stats
+    stat1_value: '50+',
+    stat1_label: 'Combined Years of\nExperience',
+    stat2_value: '4',
+    stat2_label: 'Senior Engineers\non the Team',
+    stat3_value: '15+',
+    stat3_label: 'Enterprise & SMB Projects\nDelivered',
+    stat4_value: '3',
+    stat4_label: 'Cloud Platforms\nGCP / AWS / Azure',
+
+    // Services
+    services_title: 'Our Services',
+    services_subtitle: 'Cutting-edge solutions to boost your digital capabilities and business growth.',
+    svc1_title: 'Custom Development',
+    svc1_desc: 'Microservices architecture design and implementation, REST APIs and event-driven systems, Full-stack delivery: backend + frontend + database, Integration with third-party services and APIs',
+    svc2_title: 'Enterprise Integration',
+    svc2_desc: 'Migration from on-premise to cloud (GCP, AWS, Azure), Monolith to microservices refactoring, Performance optimization and database tuning, Business workflow optimization and automation',
+    svc3_title: 'Cloud & DevOps',
+    svc3_desc: 'Scalable and reliable cloud infrastructure, Cloud-agnostic architecture design, Data pipelines for reporting and analytics, CI/CD and DevOps setup from day one, Scalable foundations that grow with your business',
+
+    // Why Choose Us
+    why_title: 'Why Work With Us',
+    why_subtitle: "Discover how we've helped businesses achieve their goals with our innovative solutions.",
+    why_experienced_title: 'Experienced Team',
+    why_experienced_desc: 'Every member of our team is a senior engineer with 10+ years of hands-on experience. No juniors learning on your project.',
+    why_performance_title: 'High Performance',
+    why_performance_desc: 'US-quality engineering at Latin American rates. You get dedicated senior talent at a fraction of the cost of domestic hires.',
+    why_battle_title: 'Battle-Tested',
+    why_battle_desc: "Our engineers have built systems for Walmart's financial platform (processing millions of transactions), government-scale cloud migrations, and enterprise ERP ecosystems.",
+    why_communication_title: 'Transparent Communication',
+    why_communication_desc: 'We work on your timezone (Americas), attend daily standups, and use the tools your team already knows \u2014 Slack, Teams, Google Meet, Jira',
+    about_remote_note: 'We are a fully remote company',
+
+    // Case Studies
+    cases_title: 'Case Studies',
+    cases_subtitle: "Discover how we've helped businesses achieve their goals with our innovative solutions.",
+    case1_title: 'E-Commerce Platform with integrated e-Invoicing',
+    case1_desc: "Built a full e-commerce platform for a retail business, including product catalog, shopping cart, checkout flow, and integration with El Salvador's electronic invoicing system (DTE). The system handles real-time tax calculations, invoice generation, and submission to the Ministry of Finance.",
+    case1_tech: 'Tech Stack: Laravel, React, MySQL, DTE Integration, REST APIs',
+    case2_title: 'Beauty Salon Management with integrated e-Invoicing',
+    case2_desc: 'Developed a management system for a beauty salon chain, covering appointment scheduling, client management, inventory tracking, and point-of-sale with electronic invoicing. The platform streamlined daily operations and ensured full fiscal compliance.',
+    case2_tech: 'Tech Stack: Laravel, Filament, MySQL, DTE Integration',
+    case3_title: 'Human Resources & Payroll System',
+    case3_desc: "Designed and built an HR and payroll management system covering employee records, attendance tracking, leave management, salary calculations, deductions, and payslip generation. The system handles El Salvador's labor law requirements including AFP, ISSS, and income tax withholdings.",
+    case3_tech: 'Tech Stack: Laravel, React, PostgreSQL, REST APIs',
+    case4_title: 'CRM solution for an insurance brokerage firm',
+    case4_desc: 'Created a custom CRM system for an insurance brokerage firm, managing client portfolios, policy tracking, renewal alerts, commission calculations, and sales pipeline. The platform improved client retention and gave the sales team full visibility into their pipeline.',
+    case4_tech: 'Tech Stack: Laravel, Filament, MySQL, REST APIs',
+    case5_title: 'API Development for Lighting App',
+    case5_desc: 'Built a REST API for a lighting control app using Node.js and Express, delivering endpoints to manage devices (on/off, brightness, color/scenes), organize them by rooms/zones, handle user authentication and permissions, persist settings and device state in a database, support basic automations (schedules/rules).',
+    case5_tech: 'Tech Stack: NodeJS Express, MySQL, REST APIs',
+
+    // Testimonials
+    testimonials_title: 'Client Testimonials',
+    testimonials_subtitle: 'Ready to start your next project? Contact us for a free consultation.',
+
+    // About
+    about_title: 'About',
+    about_desc: "We're a software studio focused on building secure, scalable and clean products. From discovery and UX to engineering and DevOps, we ship solutions that feel premium and perform fast.",
+
+    // Contact Form
+    contact_title: 'Get in Touch',
+    contact_name: 'Your Name',
+    contact_email: 'Email Address',
+    contact_phone: 'Phone Number',
+    contact_message: 'Your Message',
+    contact_send: 'Send Message',
+    contact_sending: 'Sending...',
+
+    // Footer
+    footer_quick_links: 'Quick Links',
+    footer_legal: 'Legal',
+    footer_contact_us: 'Contact Us',
+    footer_privacy: 'Privacy Policy',
+    footer_terms: 'Terms of Service',
+    footer_address: 'Las Arboledas Condominium, Building E, Vista Hermosa Neighborhood, San Salvador',
+    footer_remote_note: 'We are a fully remote company',
+    footer_rights: '\u00a9 2026 Presencia Digital. All rights reserved.',
+
+    // Legacy keys (kept for compatibility)
     nav_how: 'How it works',
     nav_benefits: 'Benefits',
     hero_badge: 'Early Access Open',
@@ -7,7 +102,6 @@ export const translations = {
     hero_title_highlight: 'REAL-WORLD',
     hero_title_end: 'PROJECTS',
     hero_subtitle: 'Right from the palm of your hand',
-    hero_desc: 'We transform real assets into digital opportunities. Be among the first to access high-value properties starting at $50. Blockchain Transparency.',
     email_placeholder: 'Enter your email address',
     nationality_placeholder: 'Select your nationality',
     btn_reserve: 'Reserve your spot',
@@ -57,9 +151,104 @@ export const translations = {
     btn_copy: 'Copy Link',
     btn_copied: 'Copied!',
     hero_right_label: "FAST RESPONSE",
-    hero_right_title: "Let’s build your next project"
+    hero_right_title: "Let's build your next project",
   },
   es: {
+    // Navbar
+    nav_services: 'Servicios',
+    nav_case_studies: 'Casos de Estudio',
+    nav_about: 'Nosotros',
+    nav_contact: 'Contacto',
+    nav_get_quote: 'Cotizar',
+    nav_switch_lang: 'Switch to English',
+
+    // Hero
+    hero_line1: 'Software a Medida',
+    hero_line2: 'Que Impulsa',
+    hero_line3: 'Crecimiento Real',
+    hero_desc: 'Somos una agencia remota especializada con sede en El Salvador, enfocada en entregar software personalizado de alta calidad, migración a la nube y automatización impulsada por IA para pequeñas y medianas empresas en las Américas.',
+    hero_cta: 'Consulta Gratuita',
+
+    // Stats
+    stat1_value: '50+',
+    stat1_label: 'Años Combinados de\nExperiencia',
+    stat2_value: '4',
+    stat2_label: 'Ingenieros Senior\nen el Equipo',
+    stat3_value: '15+',
+    stat3_label: 'Proyectos Empresariales\ny PYME Entregados',
+    stat4_value: '3',
+    stat4_label: 'Plataformas Cloud\nGCP / AWS / Azure',
+
+    // Services
+    services_title: 'Nuestros Servicios',
+    services_subtitle: 'Soluciones de vanguardia para impulsar tus capacidades digitales y el crecimiento de tu negocio.',
+    svc1_title: 'Desarrollo a Medida',
+    svc1_desc: 'Diseño e implementación de arquitectura de microservicios, APIs REST y sistemas basados en eventos, Entrega full-stack: backend + frontend + base de datos, Integración con servicios y APIs de terceros',
+    svc2_title: 'Integración Empresarial',
+    svc2_desc: 'Migración de on-premise a la nube (GCP, AWS, Azure), Refactorización de monolito a microservicios, Optimización de rendimiento y ajuste de bases de datos, Optimización y automatización de flujos de trabajo',
+    svc3_title: 'Cloud & DevOps',
+    svc3_desc: 'Infraestructura cloud escalable y confiable, Diseño de arquitectura cloud-agnóstica, Pipelines de datos para reportes y analíticas, CI/CD y DevOps desde el día uno, Bases escalables que crecen con tu negocio',
+
+    // Why Choose Us
+    why_title: 'Por Qué Elegirnos',
+    why_subtitle: 'Descubre cómo hemos ayudado a empresas a alcanzar sus metas con nuestras soluciones innovadoras.',
+    why_experienced_title: 'Equipo Experimentado',
+    why_experienced_desc: 'Cada miembro de nuestro equipo es un ingeniero senior con más de 10 años de experiencia práctica. Nadie aprende con tu proyecto.',
+    why_performance_title: 'Alto Rendimiento',
+    why_performance_desc: 'Ingeniería de calidad estadounidense a tarifas latinoamericanas. Obtienes talento senior dedicado a una fracción del costo.',
+    why_battle_title: 'Probados en Batalla',
+    why_battle_desc: 'Nuestros ingenieros han construido sistemas para la plataforma financiera de Walmart (procesando millones de transacciones), migraciones a la nube a escala gubernamental y ecosistemas ERP empresariales.',
+    why_communication_title: 'Comunicación Transparente',
+    why_communication_desc: 'Trabajamos en tu zona horaria (Américas), asistimos a standups diarios y usamos las herramientas que tu equipo ya conoce \u2014 Slack, Teams, Google Meet, Jira',
+    about_remote_note: 'Somos una empresa 100% remota',
+
+    // Case Studies
+    cases_title: 'Casos de Estudio',
+    cases_subtitle: 'Descubre cómo hemos ayudado a empresas a alcanzar sus metas con nuestras soluciones innovadoras.',
+    case1_title: 'Plataforma E-Commerce con Facturación Electrónica',
+    case1_desc: 'Construimos una plataforma completa de comercio electrónico para un negocio minorista, incluyendo catálogo de productos, carrito de compras, flujo de checkout e integración con el sistema de facturación electrónica de El Salvador (DTE). El sistema maneja cálculos de impuestos en tiempo real, generación de facturas y envío al Ministerio de Hacienda.',
+    case1_tech: 'Tecnologías: Laravel, React, MySQL, Integración DTE, APIs REST',
+    case2_title: 'Gestión de Salón de Belleza con Facturación Electrónica',
+    case2_desc: 'Desarrollamos un sistema de gestión para una cadena de salones de belleza, cubriendo programación de citas, gestión de clientes, control de inventario y punto de venta con facturación electrónica. La plataforma optimizó las operaciones diarias y aseguró el cumplimiento fiscal completo.',
+    case2_tech: 'Tecnologías: Laravel, Filament, MySQL, Integración DTE',
+    case3_title: 'Sistema de Recursos Humanos y Planilla',
+    case3_desc: 'Diseñamos y construimos un sistema de gestión de RRHH y planilla cubriendo registros de empleados, control de asistencia, gestión de permisos, cálculos salariales, deducciones y generación de boletas de pago. El sistema maneja los requisitos laborales de El Salvador incluyendo AFP, ISSS y retenciones de impuesto sobre la renta.',
+    case3_tech: 'Tecnologías: Laravel, React, PostgreSQL, APIs REST',
+    case4_title: 'CRM para Agencia Corredora de Seguros',
+    case4_desc: 'Creamos un sistema CRM personalizado para una firma corredora de seguros, gestionando portafolios de clientes, seguimiento de pólizas, alertas de renovación, cálculos de comisiones y pipeline de ventas. La plataforma mejoró la retención de clientes y dio al equipo de ventas visibilidad completa de su pipeline.',
+    case4_tech: 'Tecnologías: Laravel, Filament, MySQL, APIs REST',
+    case5_title: 'Desarrollo de API para App de Iluminación',
+    case5_desc: 'Construimos una API REST para una app de control de iluminación usando Node.js y Express, entregando endpoints para gestionar dispositivos (encendido/apagado, brillo, color/escenas), organizarlos por habitaciones/zonas, manejar autenticación y permisos de usuario, persistir configuraciones y estado de dispositivos, soportar automatizaciones básicas (horarios/reglas).',
+    case5_tech: 'Tecnologías: NodeJS Express, MySQL, APIs REST',
+
+    // Testimonials
+    testimonials_title: 'Testimonios de Clientes',
+    testimonials_subtitle: '¿Listo para iniciar tu próximo proyecto? Contáctanos para una consulta gratuita.',
+
+    // About
+    about_title: 'Nosotros',
+    about_desc: 'Somos un estudio de software enfocado en construir productos seguros, escalables y limpios. Desde descubrimiento y UX hasta ingeniería y DevOps, entregamos soluciones que se sienten premium y funcionan rápido.',
+
+    // Contact Form
+    contact_title: 'Contáctanos',
+    contact_name: 'Tu Nombre',
+    contact_email: 'Correo Electrónico',
+    contact_phone: 'Número de Teléfono',
+    contact_message: 'Tu Mensaje',
+    contact_send: 'Enviar Mensaje',
+    contact_sending: 'Enviando...',
+
+    // Footer
+    footer_quick_links: 'Enlaces Rápidos',
+    footer_legal: 'Legal',
+    footer_contact_us: 'Contáctanos',
+    footer_privacy: 'Política de Privacidad',
+    footer_terms: 'Términos de Servicio',
+    footer_address: 'Condominio Las Arboledas, Edificio E, Colonia Vista Hermosa, San Salvador',
+    footer_remote_note: 'Somos una empresa 100% remota',
+    footer_rights: '\u00a9 2026 Presencia Digital. Todos los derechos reservados.',
+
+    // Legacy keys (kept for compatibility)
     nav_how: 'Cómo funciona',
     nav_benefits: 'Beneficios',
     hero_badge: 'Acceso Anticipado Abierto',
@@ -67,7 +256,6 @@ export const translations = {
     hero_title_highlight: 'REALES',
     hero_title_end: '',
     hero_subtitle: 'Directamente desde la palma de tu mano',
-    hero_desc: 'Transformamos activos reales en oportunidades digitales. Sé de los primeros en acceder a propiedades de alto valor desde $50. Transparencia Blockchain.',
     email_placeholder: 'Ingresa tu correo electrónico',
     nationality_placeholder: 'Selecciona tu nacionalidad',
     btn_reserve: 'Reserva tu lugar',
@@ -117,7 +305,7 @@ export const translations = {
     btn_copy: 'Copiar Enlace',
     btn_copied: '¡Copiado!',
     hero_right_label: "FAST RESPONSE",
-    hero_right_title: "Let’s build your next project"
+    hero_right_title: "Let's build your next project",
   },
 };
 

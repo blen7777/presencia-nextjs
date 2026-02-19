@@ -3,21 +3,22 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useLanguage } from '@/components/LanguageProvider';
-
-const links = [
-  { label: 'Services', href: '#services' },
-  { label: 'Case Studies', href: '#case-studies' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
-];
+import { translations } from '@/lib/translations';
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  // ✅ idioma (como lo tenías antes)
   const { language, setLanguage } = useLanguage();
+  const t = translations[language];
   const toggleLanguage = () => setLanguage(language === 'en' ? 'es' : 'en');
+
+  const links = [
+    { label: t.nav_services, href: '#services' },
+    { label: t.nav_case_studies, href: '#case-studies' },
+    { label: t.nav_about, href: '#about' },
+    { label: t.nav_contact, href: '#contact' },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -47,7 +48,7 @@ export function Navbar() {
                   priority
               />
               <span className="hidden sm:block font-semibold tracking-wide text-white/90">
-              PRESENCIA DIGITA
+              PRESENCIA DIGITAL
             </span>
             </a>
 
@@ -64,7 +65,7 @@ export function Navbar() {
                   >
                     {l.label}
 
-                    {/* underline “active” like screenshot */}
+                    {/* underline "active" like screenshot */}
                     {idx === 0 && (
                         <span className="absolute -bottom-3 left-0 w-full h-[2px] bg-[#00B4C4] rounded-full opacity-80" />
                     )}
@@ -74,7 +75,7 @@ export function Navbar() {
 
             {/* Right side */}
             <div className="flex items-center gap-3">
-              {/* ✅ Language Toggle (desktop) */}
+              {/* Language Toggle (desktop) */}
               <div className="hidden md:flex items-center">
                 <div className="relative flex items-center bg-white/5 border border-white/10 rounded-full px-3 py-1">
                 <span
@@ -121,7 +122,7 @@ export function Navbar() {
                   href="#contact"
                   className="hidden md:inline-flex items-center justify-center px-5 py-2 rounded-lg border border-[#00B4C4]/60 text-white/90 hover:border-[#00B4C4] hover:text-white transition"
               >
-                Get a Quote
+                {t.nav_get_quote}
               </a>
 
               {/* Mobile Menu Button */}
@@ -155,10 +156,10 @@ export function Navbar() {
                       onClick={() => setOpen(false)}
                       className="mt-2 px-3 py-3 rounded-lg border border-[#00B4C4]/60 text-white/90 hover:border-[#00B4C4] hover:text-white transition text-center"
                   >
-                    Get a Quote
+                    {t.nav_get_quote}
                   </a>
 
-                  {/* ✅ Language Toggle (mobile) */}
+                  {/* Language Toggle (mobile) */}
                   <button
                       onClick={() => {
                         toggleLanguage();
@@ -166,7 +167,7 @@ export function Navbar() {
                       }}
                       className="mt-3 px-3 py-3 rounded-lg border border-white/10 text-left text-[#00B4C4] font-bold hover:bg-white/5 transition"
                   >
-                    {language === 'en' ? 'Switch to Español' : 'Switch to English'}
+                    {t.nav_switch_lang}
                   </button>
                 </div>
               </div>

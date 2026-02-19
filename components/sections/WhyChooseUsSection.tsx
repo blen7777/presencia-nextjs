@@ -1,3 +1,8 @@
+'use client';
+
+import { useLanguage } from '../LanguageProvider';
+import { translations } from '@/lib/translations';
+
 function FeatureCard({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
     return (
         <div className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
@@ -88,36 +93,43 @@ export function IconGear() {
 }
 
 export function WhyChooseUsSection() {
+    const { language } = useLanguage();
+    const t = translations[language];
+
     return (
         <section className="py-14">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl md:text-4xl font-bold text-center">Why Work With Us</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-center">{t.why_title}</h2>
                 <p className="text-center text-white/60 mt-3 max-w-2xl mx-auto">
-                    Discover how we’ve helped businesses achieve their goals with our innovative solutions.
+                    {t.why_subtitle}
                 </p>
 
                 <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-6">
                     <FeatureCard
                         icon={<IconBadge />}
-                        title="Experienced Team"
-                        desc="Every member of our team is a senior engineer with 10+ years of hands-on experience. No juniors learning on your project."
+                        title={t.why_experienced_title}
+                        desc={t.why_experienced_desc}
                     />
                     <FeatureCard
                         icon={<IconGauge />}
-                        title="High Performance"
-                        desc=" US-quality engineering at Latin American rates. You get dedicated senior talent at a fraction of the cost of domestic hires."
+                        title={t.why_performance_title}
+                        desc={t.why_performance_desc}
                     />
                     <FeatureCard
                         icon={<IconShieldSolid />}
-                        title="Battle-Tested"
-                        desc="Our engineers have built systems for Walmart's financial platform (processing millions of transactions), government-scale cloud migrations, and enterprise ERP ecosystems."
+                        title={t.why_battle_title}
+                        desc={t.why_battle_desc}
                     />
                     <FeatureCard
                         icon={<IconGear />}
-                        title="Transparent Communication"
-                        desc="We work on your timezone (Americas), attend daily standups, and use the tools your team already knows — Slack, Teams, Google Meet, Jira"
+                        title={t.why_communication_title}
+                        desc={t.why_communication_desc}
                     />
                 </div>
+
+                <p className="mt-8 text-center text-white/50 text-sm italic">
+                    {t.about_remote_note}
+                </p>
             </div>
         </section>
     );

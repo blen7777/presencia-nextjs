@@ -1,4 +1,8 @@
+'use client';
+
 import { ContactForm } from '@/components/ContactForm';
+import { useLanguage } from '@/components/LanguageProvider';
+import { translations } from '@/lib/translations';
 
 function HeroWatermark() {
     return (
@@ -17,6 +21,9 @@ function HeroWatermark() {
 }
 
 export function Hero() {
+    const { language } = useLanguage();
+    const t = translations[language];
+
     return (
         <section className="relative" id="top">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,17 +34,15 @@ export function Hero() {
                         {/* Left */}
                         <div className="relative z-10">
                             <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-tight">
-                                Engineering Reliable
+                                {t.hero_line1}
                                 <br />
-                                That Software
+                                {t.hero_line2}
                                 <br />
-                                Helps You Scale
+                                {t.hero_line3}
                             </h1>
 
                             <p className="mt-5 text-white/70 text-lg max-w-xl leading-relaxed">
-                                We are a specialized remote agency based in El Salvador, focused on delivering high-quality
-                                custom software, cloud migration, and AI-driven automation for small and mid-sized businesses
-                                across the Americas.
+                                {t.hero_desc}
                             </p>
 
                             <div className="mt-8 flex flex-wrap gap-4">
@@ -45,7 +50,7 @@ export function Hero() {
                                     href="#contact"
                                     className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#00B4C4] text-white font-semibold hover:opacity-95 transition shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
                                 >
-                                    Get a Free Consultation
+                                    {t.hero_cta}
                                 </a>
 
                             </div>
