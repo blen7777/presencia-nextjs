@@ -1,3 +1,8 @@
+'use client';
+
+import { useLanguage } from '../LanguageProvider';
+import { translations } from '@/lib/translations';
+
 function ServiceCard({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
     return (
         <div className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
@@ -12,7 +17,6 @@ function ServiceCard({ icon, title, desc }: { icon: React.ReactNode; title: stri
 function IconCode() {
     return (
         <svg width="62" height="62" viewBox="0 0 24 24" fill="none" className="text-white/90">
-            {/* Left chevron: move it a bit left (end at x=8 instead of 9) */}
             <path
                 d="M8 18L2.5 12L8 6"
                 stroke="currentColor"
@@ -20,8 +24,6 @@ function IconCode() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
-
-            {/* Right chevron: move it a bit right (start at x=16 instead of 15) */}
             <path
                 d="M16 6L21.5 12L16 18"
                 stroke="currentColor"
@@ -29,8 +31,6 @@ function IconCode() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
-
-            {/* Slash stays centered */}
             <path
                 d="M14 4L10 20"
                 stroke="#00B4C4"
@@ -39,7 +39,6 @@ function IconCode() {
                 strokeLinejoin="round"
             />
         </svg>
-
     );
 }
 function IconShield() {
@@ -71,32 +70,32 @@ function IconCloud() {
 }
 
 export function ServicesSection() {
+    const { language } = useLanguage();
+    const t = translations[language];
+
     return (
         <section id="services" className="pt-14 pb-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl md:text-4xl font-bold text-center">Our Services</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-center">{t.services_title}</h2>
                 <p className="text-center text-white/60 mt-3 max-w-2xl mx-auto">
-                    Cutting-edge solutions to boost your digital capabilities and business growth.
+                    {t.services_subtitle}
                 </p>
 
                 <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
                     <ServiceCard
                         icon={<IconCode />}
-                        title="Custom Development"
-                        desc=" Microservices architecture design and implementation,  REST APIs and event-driven systems,  Full-stack delivery: backend + frontend +
-database, Integration with third-party services and APIs"
+                        title={t.svc1_title}
+                        desc={t.svc1_desc}
                     />
                     <ServiceCard
                         icon={<IconShield />}
-                        title="Enterprise Integration"
-                        desc=" Migration from on-premise to cloud (GCP, AWS, Azure),  Monolith to microservices refactoring,  Performance optimization and database tuning,Business workflow optimization and automation"
+                        title={t.svc2_title}
+                        desc={t.svc2_desc}
                     />
                     <ServiceCard
                         icon={<IconCloud />}
-                        title="Cloud & DevOps"
-                        desc="Scalable and reliable cloud infrastructure, Cloud-agnostic architecture design,  Data pipelines for reporting and analytics, CI/CD and DevOps setup from day one,  Scalable foundations that grow with your
-business
-"
+                        title={t.svc3_title}
+                        desc={t.svc3_desc}
                     />
                 </div>
             </div>

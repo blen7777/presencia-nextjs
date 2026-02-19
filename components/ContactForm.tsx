@@ -2,9 +2,13 @@
 
 import { useRef, useState } from 'react';
 import { submitContact } from '@/actions/contact';
+import { useLanguage } from '@/components/LanguageProvider';
+import { translations } from '@/lib/translations';
 
 export function ContactForm() {
     const formRef = useRef<HTMLFormElement | null>(null);
+    const { language } = useLanguage();
+    const t = translations[language];
 
     const [loading, setLoading] = useState(false);
     const [done, setDone] = useState(false);
@@ -18,9 +22,6 @@ export function ContactForm() {
         setMsg('');
 
         const fd = new FormData(e.currentTarget);
-
-        const language =
-            (typeof document !== 'undefined' && document.documentElement.lang === 'es') ? 'es' : 'en';
 
         const res = await submitContact({
             name: String(fd.get('name') || ''),
@@ -45,7 +46,7 @@ export function ContactForm() {
             id="contact"
             className="rounded-2xl border border-white/10 bg-white/5 shadow-[0_20px_60px_rgba(0,0,0,0.45)] p-7"
         >
-            <h3 className="text-2xl font-semibold">Get in Touch</h3>
+            <h3 className="text-2xl font-semibold">{t.contact_title}</h3>
             <div className="mt-4 h-px bg-white/10" />
 
             <form ref={formRef} onSubmit={onSubmit} className="mt-5 space-y-4">
@@ -60,14 +61,14 @@ export function ContactForm() {
 
                 <input
                     className="w-full h-12 rounded-lg bg-[#0B1324]/60 border border-white/10 px-4 text-white placeholder:text-white/40 outline-none focus:border-white/20"
-                    placeholder="Your Name"
+                    placeholder={t.contact_name}
                     name="name"
                     required
                 />
 
                 <input
                     className="w-full h-12 rounded-lg bg-[#0B1324]/60 border border-white/10 px-4 text-white placeholder:text-white/40 outline-none focus:border-white/20"
-                    placeholder="Email Address"
+                    placeholder={t.contact_email}
                     name="email"
                     type="email"
                     required
@@ -75,13 +76,13 @@ export function ContactForm() {
 
                 <input
                     className="w-full h-12 rounded-lg bg-[#0B1324]/60 border border-white/10 px-4 text-white placeholder:text-white/40 outline-none focus:border-white/20"
-                    placeholder="Phone Number"
+                    placeholder={t.contact_phone}
                     name="phone"
                 />
 
                 <textarea
                     className="w-full min-h-[120px] rounded-lg bg-[#0B1324]/60 border border-white/10 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:border-white/20 resize-none"
-                    placeholder="Your Message"
+                    placeholder={t.contact_message}
                     name="message"
                     required
                 />
@@ -90,7 +91,7 @@ export function ContactForm() {
                     disabled={loading}
                     className="w-full h-12 rounded-lg bg-[#00B4C4] text-white font-semibold hover:opacity-95 transition disabled:opacity-60"
                 >
-                    {loading ? 'Sending...' : 'Send Message'}
+                    {loading ? t.contact_sending : t.contact_send}
                 </button>
 
                 {!!msg && (

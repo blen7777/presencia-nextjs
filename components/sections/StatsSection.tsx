@@ -1,9 +1,17 @@
+'use client';
+
+import { useLanguage } from '../LanguageProvider';
+import { translations } from '@/lib/translations';
+
 export function StatsSection() {
+    const { language } = useLanguage();
+    const t = translations[language];
+
     const stats = [
-        { value: '50+', label: 'Combined Years of\nExperience' },
-        { value: '4', label: 'Senior Engineers\non the Team' },
-        { value: '15+', label: 'Enterprise & SMB Projects\nDelivered' },
-        { value: '3', label: 'Cloud Platforms\nGCP / AWS / Azure' },
+        { value: t.stat1_value, label: t.stat1_label },
+        { value: t.stat2_value, label: t.stat2_label },
+        { value: t.stat3_value, label: t.stat3_label },
+        { value: t.stat4_value, label: t.stat4_label },
     ];
 
     return (
@@ -13,12 +21,10 @@ export function StatsSection() {
                     <div className="grid grid-cols-2 md:grid-cols-4">
                         {stats.map((s, idx) => (
                             <div
-                                key={s.value}
+                                key={idx}
                                 className={[
                                     'px-6 py-8 text-center',
-                                    // vertical dividers on desktop
                                     idx !== 0 ? 'md:border-l md:border-white/10' : '',
-                                    // row dividers on mobile
                                     idx >= 2 ? 'border-t border-white/10 md:border-t-0' : '',
                                 ].join(' ')}
                             >
@@ -32,7 +38,6 @@ export function StatsSection() {
                         ))}
                     </div>
 
-                    {/* subtle inner highlight like your cards */}
                     <div className="pointer-events-none absolute inset-0" />
                 </div>
             </div>

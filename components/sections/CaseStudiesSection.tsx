@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useLanguage } from '../LanguageProvider';
+import { translations } from '@/lib/translations';
 
 type CaseItem = {
     title: string;
@@ -17,9 +19,9 @@ function clamp(n: number, min: number, max: number) {
 
 function getPerView() {
     if (typeof window === 'undefined') return 3;
-    if (window.innerWidth >= 1024) return 3; // lg
-    if (window.innerWidth >= 768) return 2; // md
-    return 1; // mobile
+    if (window.innerWidth >= 1024) return 3;
+    if (window.innerWidth >= 768) return 2;
+    return 1;
 }
 
 function CaseCard({
@@ -34,7 +36,6 @@ function CaseCard({
             ref={innerRef}
             className="snap-start flex-none rounded-xl border border-white/10 bg-white/5 overflow-hidden shadow-[0_18px_50px_rgba(0,0,0,0.35)]"
         >
-            {/* Image */}
             <div className="relative h-44 w-full border-b border-white/10">
                 <Image
                     src={item.image}
@@ -43,7 +44,6 @@ function CaseCard({
                     className="object-cover"
                     priority={false}
                 />
-                {/* subtle overlay like design */}
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.10),rgba(0,0,0,0.35))]" />
             </div>
 
@@ -57,48 +57,43 @@ function CaseCard({
 }
 
 export function CaseStudiesSection() {
+    const { language } = useLanguage();
+    const t = translations[language];
+
     const items: CaseItem[] = useMemo(
         () => [
             {
-                title: 'E-Commerce Platform with Electronic Invoicing',
-                desc: 'Built a full e-commerce platform for a retail business, including product catalog, shopping cart, checkout flow, and\n' +
-                    'integration with El Salvador\'s electronic invoicing system (DTE). The system handles real-time tax calculations, invoice\n' +
-                    'generation, and submission to the Ministry of Finance.',
-                tech: 'Technologies: Laravel, React, MySQL, DTE Integration, REST APIs',
+                title: t.case1_title,
+                desc: t.case1_desc,
+                tech: t.case1_tech,
                 image: '/cases/case-1.jpg',
             },
             {
-                title: 'Beauty Salon Management with Electronic Invoicing',
-                desc: 'Developed a management system for a beauty salon chain, covering appointment scheduling, client management,\n' +
-                    'inventory tracking, and point-of-sale with electronic invoicing. The platform streamlined daily operations and ensured full\n' +
-                    'fiscal compliance.\n',
-                tech: 'Technologies: Laravel, Filament, MySQL, DTE Integration',
+                title: t.case2_title,
+                desc: t.case2_desc,
+                tech: t.case2_tech,
                 image: '/cases/case-2.jpg',
             },
             {
-                title: 'Human Resources & Payroll System',
-                desc: 'Designed and built an HR and payroll management system covering employee records, attendance tracking, leave\n' +
-                    'management, salary calculations, deductions, and payslip generation. The system handles El Salvador\'s labor law\n' +
-                    'requirements including AFP, ISSS, and income tax withholdings.\n',
-                tech: 'Technologies: Laravel, React, PostgreSQL, REST APIs',
+                title: t.case3_title,
+                desc: t.case3_desc,
+                tech: t.case3_tech,
                 image: '/cases/case-3.jpg',
             },
             {
-                title: 'CRM for Insurance Brokerage Agency',
-                desc: 'Created a custom CRM system for an insurance brokerage firm, managing client portfolios, policy tracking, renewal\n' +
-                    'alerts, commission calculations, and sales pipeline. The platform improved client retention and gave the sales team full\n' +
-                    'visibility into their pipeline.\n',
-                tech: 'Technologies: Laravel, Filament, MySQL, REST APIs',
+                title: t.case4_title,
+                desc: t.case4_desc,
+                tech: t.case4_tech,
                 image: '/cases/case-4.jpg',
             },
             {
-                title: 'API Development for Lighting App',
-                desc: 'I built a REST API for a lighting control app using Node.js and Express, delivering endpoints to manage devices (on/off, brightness, color/scenes), organize them by rooms/zones, handle user authentication and permissions, persist settings and device state in a database, support basic automations (schedules/rules).',
-                tech: 'Technologies: NodeJS Express, MySQL, REST APIs',
+                title: t.case5_title,
+                desc: t.case5_desc,
+                tech: t.case5_tech,
                 image: '/cases/case-5.jpg',
             },
         ],
-        []
+        [t]
     );
 
     const viewportRef = useRef<HTMLDivElement | null>(null);
@@ -109,13 +104,12 @@ export function CaseStudiesSection() {
     const [index, setIndex] = useState(0);
 
     const maxIndex = Math.max(0, items.length - perView);
-    const pages = maxIndex + 1; // dots
+    const pages = maxIndex + 1;
 
     const goTo = (i: number) => {
         const next = clamp(i, 0, maxIndex);
         setIndex(next);
 
-        // scroll to the card at position "next"
         const el = cardRefs.current[next];
         el?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
     };
@@ -123,7 +117,6 @@ export function CaseStudiesSection() {
         const next = () => goTo(index + 1);
         const prev = () => goTo(index - 1);
 
-        // set perView responsive
         useEffect(() => {
             const apply = () => setPerView(getPerView());
             apply();
@@ -132,12 +125,10 @@ export function CaseStudiesSection() {
             return () => window.removeEventListener('resize', apply);
         }, []);
 
-        // clamp index when perView changes
         useEffect(() => {
             const clamped = clamp(index, 0, maxIndex);
             if (clamped !== index) {
                 setIndex(clamped);
-                // align after layout change
                 requestAnimationFrame(() => {
                     const el = cardRefs.current[clamped];
                     el?.scrollIntoView({ behavior: 'auto', inline: 'start', block: 'nearest' });
@@ -146,7 +137,6 @@ export function CaseStudiesSection() {
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [perView]);
 
-        // update dots/index when user scrolls/swipes
         useEffect(() => {
             const viewport = viewportRef.current;
             const track = trackRef.current;
@@ -177,10 +167,9 @@ export function CaseStudiesSection() {
             };
         }, [maxIndex]);
 
-        // width of each card based on perView (so it shows 3 like design)
         const cardWidthStyle =
             perView === 3
-                ? 'calc((100% - 48px) / 3)' // gap-6 => 24px, two gaps => 48px
+                ? 'calc((100% - 48px) / 3)'
                 : perView === 2
                     ? 'calc((100% - 24px) / 2)'
                     : '100%';
@@ -188,14 +177,12 @@ export function CaseStudiesSection() {
         return (
             <section id="case-studies" className="py-14">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl md:text-4xl font-bold text-center">Case Studies</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-center">{t.cases_title}</h2>
                     <p className="text-center text-white/60 mt-3 max-w-2xl mx-auto">
-                        Discover how we’ve helped businesses achieve their goals with our innovative solutions.
+                        {t.cases_subtitle}
                     </p>
 
-                    {/* Carousel */}
                     <div className="mt-10 relative">
-                        {/* optional arrows (discretos) */}
                         <button
                             type="button"
                             onClick={prev}
@@ -216,7 +203,6 @@ export function CaseStudiesSection() {
                             <span className="material-icons-outlined text-white/80">chevron_right</span>
                         </button>
 
-                        {/* viewport */}
                         <div
                             ref={viewportRef}
                             className="overflow-x-auto snap-x snap-mandatory scroll-smooth"
@@ -225,7 +211,6 @@ export function CaseStudiesSection() {
                                 msOverflowStyle: 'none',
                             }}
                         >
-                            {/* hide webkit scrollbar */}
                             <style jsx>{`
               div::-webkit-scrollbar {
                 display: none;
@@ -235,7 +220,7 @@ export function CaseStudiesSection() {
                             <div ref={trackRef} className="flex gap-6">
                                 {items.map((item, i) => (
                                     <div
-                                        key={item.title}
+                                        key={i}
                                         style={{ width: cardWidthStyle }}
                                         className="flex-none"
                                     >
@@ -248,7 +233,6 @@ export function CaseStudiesSection() {
                             </div>
                         </div>
 
-                        {/* Dots */}
                         <div className="mt-8 flex items-center justify-center gap-3 opacity-80">
                             {Array.from({ length: pages }).map((_, i) => (
                                 <button
