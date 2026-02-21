@@ -34,3 +34,5 @@ coverage/
 # Ignore TypeScript cache
 *.tsbuildinfo
 next-env.d.ts
+
+docs/*

@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useLanguage } from './LanguageProvider';
 import { translations } from '@/lib/translations';
+import { FadeIn } from '@/components/FadeIn';
 
 function FooterNetworkBg() {
   return (
@@ -30,6 +31,7 @@ export function Footer() {
         <FooterNetworkBg />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 relative">
+          <FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 items-start">
             {/* Brand */}
             <div className="md:col-span-1 flex items-center gap-4">
@@ -88,6 +90,7 @@ export function Footer() {
               </ul>
             </div>
           </div>
+          </FadeIn>
 
           <div className="mt-10 h-px bg-white/10" />
 

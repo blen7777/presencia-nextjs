@@ -2,6 +2,7 @@
 
 import { useLanguage } from '../LanguageProvider';
 import { translations } from '@/lib/translations';
+import { FadeIn } from '@/components/FadeIn';
 
 export function StatsSection() {
     const { language } = useLanguage();
@@ -17,6 +18,7 @@ export function StatsSection() {
     return (
         <section className="py-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <FadeIn>
                 <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-[0_18px_55px_rgba(0,0,0,0.35)] overflow-hidden">
                     <div className="grid grid-cols-2 md:grid-cols-4">
                         {stats.map((s, idx) => (
@@ -40,6 +42,7 @@ export function StatsSection() {
 
                     <div className="pointer-events-none absolute inset-0" />
                 </div>
+                </FadeIn>
             </div>
         </section>
     );

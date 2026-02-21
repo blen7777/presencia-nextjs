@@ -3,6 +3,7 @@
 import { ContactForm } from '@/components/ContactForm';
 import { useLanguage } from '@/components/LanguageProvider';
 import { translations } from '@/lib/translations';
+import { FadeIn } from '@/components/FadeIn';
 
 function HeroWatermark() {
     return (
@@ -32,34 +33,42 @@ export function Hero() {
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-10 lg:py-14">
                         {/* Left */}
-                        <div className="relative z-10">
-                            <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-tight">
-                                {t.hero_line1}
-                                <br />
-                                {t.hero_line2}
-                                <br />
-                                {t.hero_line3}
-                            </h1>
+                        <FadeIn direction="left">
+                            <div className="relative z-10">
+                                <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-tight">
+                                    {t.hero_line1}
+                                    <br />
+                                    {t.hero_line2}
+                                    {t.hero_line3 && (
+                                        <>
+                                            <br />
+                                            {t.hero_line3}
+                                        </>
+                                    )}
+                                </h1>
 
-                            <p className="mt-5 text-white/70 text-lg max-w-xl leading-relaxed">
-                                {t.hero_desc}
-                            </p>
+                                <p className="mt-5 text-white/70 text-lg max-w-xl leading-relaxed">
+                                    {t.hero_desc}
+                                </p>
 
-                            <div className="mt-8 flex flex-wrap gap-4">
-                                <a
-                                    href="#contact"
-                                    className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#00B4C4] text-white font-semibold hover:opacity-95 transition shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
-                                >
-                                    {t.hero_cta}
-                                </a>
+                                <div className="mt-8 flex flex-wrap gap-4">
+                                    <a
+                                        href="#contact"
+                                        className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#00B4C4] text-white font-semibold hover:opacity-95 transition shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+                                    >
+                                        {t.hero_cta}
+                                    </a>
 
+                                </div>
                             </div>
-                        </div>
+                        </FadeIn>
 
                         {/* Right */}
-                        <div className="relative z-10">
-                            <ContactForm />
-                        </div>
+                        <FadeIn direction="right" delay={0.2}>
+                            <div className="relative z-10">
+                                <ContactForm />
+                            </div>
+                        </FadeIn>
                     </div>
 
                     {/* Divider line like screenshot */}
