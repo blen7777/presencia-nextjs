@@ -6,6 +6,7 @@ import { AboutSection } from '@/components/sections/AboutSection';
 import { StatsSection } from '@/components/sections/StatsSection';
 import { CaseStudiesSection } from '@/components/sections/CaseStudiesSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
+import { TeamExperienceSection } from '@/components/sections/TeamExperienceSection';
 import { Footer } from '@/components/Footer';
 import { LanguageProvider } from '@/components/LanguageProvider';
 import { SiteBackdrop } from '@/components/SiteBackdrop';
@@ -15,10 +16,8 @@ export default function Home() {
   return (
       <LanguageProvider>
         <div className="min-h-screen text-white antialiased relative overflow-hidden">
-          {/* ✅ Same blue tone for ALL the page */}
           <SiteBackdrop />
 
-          {/* ✅ Header image background */}
           <div className="relative">
             <HeaderBackdrop />
             <Navbar />
@@ -29,9 +28,10 @@ export default function Home() {
             <StatsSection />
             <ServicesSection />
             <WhyChooseUsSection />
-
+            <TeamExperienceSection />
             <CaseStudiesSection />
             <TestimonialsSection />
+            <AboutSection />
           </main>
 
           <Footer />

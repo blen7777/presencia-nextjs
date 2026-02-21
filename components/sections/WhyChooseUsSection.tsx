@@ -2,14 +2,17 @@
 
 import { useLanguage } from '../LanguageProvider';
 import { translations } from '@/lib/translations';
+import { FadeIn } from '@/components/FadeIn';
 
-function FeatureCard({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
+function FeatureCard({ icon, title, desc, delay }: { icon: React.ReactNode; title: string; desc: string; delay?: number }) {
     return (
-        <div className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
-            <div className="mb-4">{icon}</div>
-            <h3 className="text-base font-semibold">{title}</h3>
-            <p className="mt-2 text-white/60 text-sm leading-relaxed">{desc}</p>
-        </div>
+        <FadeIn delay={delay}>
+            <div className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.35)] h-full">
+                <div className="mb-4">{icon}</div>
+                <h3 className="text-base font-semibold">{title}</h3>
+                <p className="mt-2 text-white/60 text-sm leading-relaxed">{desc}</p>
+            </div>
+        </FadeIn>
     );
 }
 
@@ -40,7 +43,6 @@ function IconShieldSolid() {
         </svg>
     );
 }
-// IconGear (igual al diseño: doble trazo + centro con fill suave)
 export function IconGear() {
     return (
         <svg
@@ -51,7 +53,6 @@ export function IconGear() {
             className="text-white/90"
             aria-hidden="true"
         >
-            {/* OUTLINE oscuro (debajo) */}
             <path
                 d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83a2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33a1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-.09a1.65 1.65 0 0 0-1-1.51a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0a2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2a2 2 0 0 1 2-2h.09a1.65 1.65 0 0 0 1.51-1a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83a2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2a2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0a2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"
                 stroke="#0B1324"
@@ -71,7 +72,6 @@ export function IconGear() {
                 strokeLinejoin="round"
             />
 
-            {/* TRAZO blanco (arriba) */}
             <path
                 d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83a2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33a1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-.09a1.65 1.65 0 0 0-1-1.51a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0a2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2a2 2 0 0 1 2-2h.09a1.65 1.65 0 0 0 1.51-1a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83a2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2a2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0a2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"
                 stroke="currentColor"
@@ -99,37 +99,45 @@ export function WhyChooseUsSection() {
     return (
         <section className="py-14">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl md:text-4xl font-bold text-center">{t.why_title}</h2>
-                <p className="text-center text-white/60 mt-3 max-w-2xl mx-auto">
-                    {t.why_subtitle}
-                </p>
+                <FadeIn>
+                    <h2 className="text-3xl md:text-4xl font-bold text-center">{t.why_title}</h2>
+                    <p className="text-center text-white/60 mt-3 max-w-2xl mx-auto">
+                        {t.why_subtitle}
+                    </p>
+                </FadeIn>
 
                 <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-6">
                     <FeatureCard
                         icon={<IconBadge />}
                         title={t.why_experienced_title}
                         desc={t.why_experienced_desc}
+                        delay={0}
                     />
                     <FeatureCard
                         icon={<IconGauge />}
                         title={t.why_performance_title}
                         desc={t.why_performance_desc}
+                        delay={0.1}
                     />
                     <FeatureCard
                         icon={<IconShieldSolid />}
                         title={t.why_battle_title}
                         desc={t.why_battle_desc}
+                        delay={0.2}
                     />
                     <FeatureCard
                         icon={<IconGear />}
                         title={t.why_communication_title}
                         desc={t.why_communication_desc}
+                        delay={0.3}
                     />
                 </div>
 
-                <p className="mt-8 text-center text-white/50 text-sm italic">
-                    {t.about_remote_note}
-                </p>
+                <FadeIn delay={0.2}>
+                    <p className="mt-8 text-center text-white/50 text-sm italic">
+                        {t.about_remote_note}
+                    </p>
+                </FadeIn>
             </div>
         </section>
     );
