@@ -20,8 +20,8 @@ export const translations = {
     stat1_label: 'Combined Years of\nEngineering Experience',
     stat2_value: '4',
     stat2_label: 'Senior Engineers,\nNo Juniors',
-    stat3_value: 'Fortune 500',
-    stat3_label: 'Enterprise Systems\nBuilt by Our Team',
+    stat3_value: '10+',
+    stat3_label: 'Years of Enterprise\nExperience',
     stat4_value: '3',
     stat4_label: 'Cloud Platforms\nGCP / AWS / Azure',
 
@@ -100,7 +100,7 @@ export const translations = {
 
     // About
     about_title: 'About Us',
-    about_desc: "Presencia Digital is a software engineering team based in El Salvador. We are senior engineers who decided to combine our experience building enterprise systems — for companies like Walmart, government institutions, and Fortune 500 clients — and put it to work directly for growing businesses.\n\nWe are not a large agency. We are a focused team of four experienced engineers who work directly with you. No layers of management, no junior developers, no outsourced work. When you hire us, you get us.\n\nWe operate fully remote and serve clients across the Americas. We believe that honest work, clear communication, and technical excellence are worth more than fancy offices or inflated promises.",
+    about_desc: "Presencia Digital is a software engineering team based in El Salvador. We are senior engineers with deep experience in enterprise-grade systems, government platforms, and complex integrations. We decided to bring that expertise directly to growing businesses.\n\nWe are not a large agency. We are a focused team of four experienced engineers who work directly with you. No layers of management, no junior developers, no outsourced work. When you hire us, you get us.\n\nWe operate fully remote and serve clients across the Americas. We believe that honest work, clear communication, and technical excellence are worth more than fancy offices or inflated promises.",
     team1_name: 'Rodolfo Velasco',
     team1_role: 'Lead Backend Engineer & Co-Founder',
     team1_bio: "15+ years building distributed systems and high-volume data platforms. Scala, Java, Spring Boot, Apache Kafka, GCP. Previously built Walmart's real-time financial streaming platform and led cloud migration for El Salvador's electronic invoicing system (83M+ records). MBA from ISEADE-FEPADE. Computer Science degree from UCA.",
@@ -157,8 +157,8 @@ export const translations = {
     stat1_label: 'Años de Experiencia\nCombinada en Ingeniería',
     stat2_value: '4',
     stat2_label: 'Ingenieros Senior\nDedicados',
-    stat3_value: 'Fortune 500',
-    stat3_label: 'Sistemas Empresariales\nConstruidos por Nuestro Equipo',
+    stat3_value: '10+',
+    stat3_label: 'Años de Experiencia\nEmpresarial',
     stat4_value: '3',
     stat4_label: 'Plataformas Cloud\nGCP / AWS / Azure',
 
@@ -237,7 +237,7 @@ export const translations = {
 
     // About
     about_title: 'Sobre Nosotros',
-    about_desc: 'Presencia Digital es un equipo de ingeniería de software en El Salvador. Somos ingenieros senior que decidimos combinar nuestra experiencia construyendo sistemas empresariales — para compañías como Walmart, instituciones de gobierno y clientes Fortune 500 — y ponerla directamente al servicio de empresas en crecimiento.\n\nNo somos una agencia grande. Somos un equipo enfocado de cuatro ingenieros experimentados que trabajamos directamente contigo. Sin capas de gestión, sin desarrolladores junior, sin trabajo subcontratado. Cuando nos contratas, trabajas con nosotros.\n\nOperamos 100% remoto y servimos clientes en toda América. Creemos que el trabajo honesto, la comunicación clara y la excelencia técnica valen más que oficinas elegantes o promesas infladas.',
+    about_desc: 'Presencia Digital es un equipo de ingeniería de software en El Salvador. Somos ingenieros senior con amplia experiencia en sistemas de nivel empresarial, plataformas gubernamentales e integraciones complejas. Decidimos poner esa experiencia directamente al servicio de empresas en crecimiento.\n\nNo somos una agencia grande. Somos un equipo enfocado de cuatro ingenieros experimentados que trabajamos directamente contigo. Sin capas de gestión, sin desarrolladores junior, sin trabajo subcontratado. Cuando nos contratas, trabajas con nosotros.\n\nOperamos 100% remoto y servimos clientes en toda América. Creemos que el trabajo honesto, la comunicación clara y la excelencia técnica valen más que oficinas elegantes o promesas infladas.',
     team1_name: 'Rodolfo Velasco',
     team1_role: 'Ingeniero Backend Principal y Co-Fundador',
     team1_bio: 'Más de 15 años construyendo sistemas distribuidos y plataformas de datos de alto volumen. Scala, Java, Spring Boot, Apache Kafka, GCP. Previamente construyó la plataforma financiera en tiempo real de Walmart y lideró la migración cloud del sistema de facturación electrónica de El Salvador (83M+ registros). MBA de ISEADE-FEPADE. Licenciatura en Ciencias de la Computación, UCA.',

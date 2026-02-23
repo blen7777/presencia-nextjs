@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { useLanguage } from '../LanguageProvider';
 import { translations } from '@/lib/translations';
+import { testimonials as testimonialsConfig } from '@/lib/testimonials.config';
 import { FadeIn } from '@/components/FadeIn';
 
 type Testimonial = {
@@ -56,20 +57,25 @@ export function TestimonialsSection() {
     const t = translations[language];
 
     const testimonials: Testimonial[] = useMemo(
-        () => [
-            {
-                name: t.testimonial1_name,
-                role: t.testimonial1_role,
-                quote: t.testimonial1_quote,
-            },
-            {
-                name: t.testimonial2_name,
-                role: t.testimonial2_role,
-                quote: t.testimonial2_quote,
-            },
-        ],
-        [t]
+        () =>
+            testimonialsConfig
+                .filter((c) => c.enabled)
+                .map((c) => ({
+                    name: c.name[language],
+                    role: c.role[language],
+                    quote: c.quote[language],
+                })),
+        [language]
     );
+
+    if (testimonials.length === 0) return null;
+
+    const gridCols =
+        testimonials.length === 1
+            ? 'md:grid-cols-1 max-w-2xl mx-auto'
+            : testimonials.length === 3
+              ? 'md:grid-cols-3'
+              : 'md:grid-cols-2';
 
     return (
         <section className="py-14">
@@ -81,7 +87,7 @@ export function TestimonialsSection() {
                     </p>
                 </FadeIn>
 
-                <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className={`mt-10 grid grid-cols-1 ${gridCols} gap-6`}>
                     {testimonials.map((testimonial, i) => (
                         <FadeIn key={`${testimonial.name}-${testimonial.role}`} delay={i * 0.15}>
                             <TestimonialCard
