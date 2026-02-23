@@ -5,6 +5,17 @@ import { useLanguage } from './LanguageProvider';
 import { translations } from '@/lib/translations';
 import { FadeIn } from '@/components/FadeIn';
 
+/**
+ * Social media links config.
+ * Set the `url` to your profile URL to show the icon, or leave it as '' to hide it.
+ */
+const socialLinks = [
+  { key: 'facebook', icon: 'facebook', url: '' },
+  { key: 'twitter', icon: 'travel_explore', url: '' },
+  { key: 'linkedin', icon: 'work', url: '' },
+  { key: 'chat', icon: 'chat', url: '' },
+];
+
 function FooterNetworkBg() {
   return (
       <div className="absolute inset-0 opacity-[0.18] pointer-events-none">
@@ -107,22 +118,23 @@ export function Footer() {
               <a className="hover:text-[#00B4C4] transition" href="#contact">{t.nav_contact}</a>
             </div>
 
-            <div className="mt-8 flex items-center justify-center gap-4">
-              {['facebook', 'twitter', 'linkedin', 'chat'].map((icon) => (
-                  <a
-                      key={icon}
-                      href="#"
+            {socialLinks.some((s) => s.url) && (
+              <div className="mt-8 flex items-center justify-center gap-4">
+                {socialLinks
+                  .filter((s) => s.url)
+                  .map((s) => (
+                    <a
+                      key={s.key}
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/70 hover:text-white hover:border-white/20 transition"
-                  >
-                <span className="material-icons-outlined text-base">
-                  {icon === 'facebook' && 'facebook'}
-                  {icon === 'twitter' && 'travel_explore'}
-                  {icon === 'linkedin' && 'work'}
-                  {icon === 'chat' && 'chat'}
-                </span>
-                  </a>
-              ))}
-            </div>
+                    >
+                      <span className="material-icons-outlined text-base">{s.icon}</span>
+                    </a>
+                  ))}
+              </div>
+            )}
           </div>
         </div>
       </footer>
