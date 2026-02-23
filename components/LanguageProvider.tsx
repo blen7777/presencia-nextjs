@@ -14,7 +14,9 @@ function getInitialLanguage(): Language {
   if (typeof window === 'undefined') return 'en';
   const stored = localStorage.getItem('lang');
   if (stored === 'en' || stored === 'es') return stored;
-  return navigator.language.startsWith('es') ? 'es' : 'en';
+  const langs = navigator.languages ?? [navigator.language];
+  const preferred = langs.find((l) => l.startsWith('en') || l.startsWith('es'));
+  return preferred?.startsWith('es') ? 'es' : 'en';
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
